@@ -505,9 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tracking: {fileID: 190887969}
-  maxDistance: 10
-  trackSpeed: 10
-  trackSpeedAdjustment: 5
+  trackSpeed: 70
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
