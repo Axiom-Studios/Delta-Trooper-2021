@@ -26,4 +26,21 @@ public class Player : MonoBehaviour
 		Vector2 movement = input * speed * Time.deltaTime;
 		transform.Translate(movement);
 	}
+
+    public void OnTriggerEnter(Collision collision){
+        if (collision.gameObject.tag == "Macrophage"){
+            kill();
+        }
+        else if(collision.gameObject.tag == "Antibody"){
+            speed -= 1;
+            Destroy(collision.gameObject);
+            if (speed <= 0){
+                kill();
+            }
+        }
+    }
+
+    public void kill(){
+        Destroy(gameObject);
+    }
 }
