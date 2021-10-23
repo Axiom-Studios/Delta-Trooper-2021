@@ -27,20 +27,24 @@ public class Player : MonoBehaviour
 		transform.Translate(movement);
 	}
 
-    public void OnTriggerEnter(Collision collision){
-        if (collision.gameObject.tag == "Macrophage"){
+    private void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.tag == "Macrophage")
+        {
             kill();
         }
-        else if(collision.gameObject.tag == "Antibody"){
+        else if(other.gameObject.tag == "Antibody")
+        {
             speed -= 1;
-            Destroy(collision.gameObject);
-            if (speed <= 0){
+            Destroy(other.gameObject);
+            if (speed <= 0)
+            {
                 kill();
             }
         }
     }
 
-    public void kill(){
+    public void kill()
+    {
         Destroy(gameObject);
     }
 }
