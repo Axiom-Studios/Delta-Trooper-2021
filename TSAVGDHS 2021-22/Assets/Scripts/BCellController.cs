@@ -10,6 +10,7 @@ public class BCellController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         InvokeRepeating("SpawnEnemy", 1, 1);
     }
 
@@ -17,12 +18,12 @@ public class BCellController : MonoBehaviour
     void Update()
     {
         if (!spawning){
-                if (Vector3.Distance(transform.position, player.transform.position) < 10){
+                if (Vector3.Distance(transform.position, player.transform.position) < 5){
                     spawning = true;
                 }
         }
         else{
-            if (Vector3.Distance(transform.position, player.transform.position) > 10){
+            if (Vector3.Distance(transform.position, player.transform.position) > 5){
                     spawning = false;
                 }
         }
@@ -32,8 +33,8 @@ public class BCellController : MonoBehaviour
     {
         if (spawning)
         {
-            var newPos = new Vector2 (Vector2.MoveTowards(transform.position, player.transform.position, 5));
-            Instantiate(antibody, newPos);
+            Vector2 newPos = Vector2.MoveTowards(transform.position, player.transform.position, 1);
+            Instantiate(antibody, newPos, transform.rotation);
         }
     }
 }

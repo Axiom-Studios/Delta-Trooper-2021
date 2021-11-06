@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AntibodyBehavior : MonoBehaviour
 {
-    public GameObject player;
     public bool chasing = false;
     private float speed = 8;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class AntibodyBehavior : MonoBehaviour
                 }
         }
         else{
-            if (Vector3.Distance(transform.position, player.transform.position) > 10){
+            if (Vector3.Distance(transform.position, player.transform.position) > 5){
                     chasing = false;
                 }
             else{
