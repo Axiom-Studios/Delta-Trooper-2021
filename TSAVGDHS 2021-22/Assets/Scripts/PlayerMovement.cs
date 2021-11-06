@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 		transform.Translate(movement);
 	}
 
-    private void OnTriggerEnter2D(Collider2D other){
+    private void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.tag == "Macrophage")
         {
             kill();
@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void kill()
     {
-        gameObject.SetActive(false);
+        transform.position = new Vector2(0, 0);
+        speed = 10;
     }
 }

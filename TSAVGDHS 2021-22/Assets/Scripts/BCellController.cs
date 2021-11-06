@@ -11,7 +11,7 @@ public class BCellController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("SpawnEnemy", 1, 1);
+        InvokeRepeating("SpawnEnemy", 1, 0.5f);
     }
 
     // Update is called once per frame

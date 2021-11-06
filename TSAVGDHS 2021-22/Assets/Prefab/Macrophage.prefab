@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5375533742849913238}
   - component: {fileID: 5375533742849913237}
   - component: {fileID: 5375533742849913232}
+  - component: {fileID: -8577780614304828264}
   m_Layer: 0
   m_Name: Macrophage
   m_TagString: Macrophage
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5375533742849913236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.88, y: 2.68, z: 0}
-  m_LocalScale: {x: 2.7016, y: 2.7016, z: 2.7016}
+  m_LocalPosition: {x: -9.7139, y: 2.8266, z: 0}
+  m_LocalScale: {x: 3.0336385, y: 3.0336385, z: 3.0336385}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -150,3 +151,24 @@ PolygonCollider2D:
       - {x: 0.265625, y: -0.4375}
       - {x: 0.29296875, y: -0.390625}
       - {x: 0.30859375, y: -0.36328125}
+--- !u!50 &-8577780614304828264
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375533742849913236}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
