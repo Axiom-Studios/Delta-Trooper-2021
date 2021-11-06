@@ -45,6 +45,6 @@ public class Player : MonoBehaviour
 
     public void kill()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
