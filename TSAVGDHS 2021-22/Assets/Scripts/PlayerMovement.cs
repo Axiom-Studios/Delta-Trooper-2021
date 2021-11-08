@@ -5,17 +5,20 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	InputMaster controls;
-	public float speed;
+    private Rigidbody2D rb;
+	public float speed = 10;
+
     // Start is called before the first frame update
     void Start()
     {
+        rb = this.GetComponent<Rigidbody2D>();
         //input setup
 		controls = new InputMaster();
 		controls.Enable();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         movement();
     }
@@ -23,11 +26,12 @@ public class PlayerMovement : MonoBehaviour
 	void movement()
 	{
 		Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
-		Vector2 movement = input * speed * Time.deltaTime;
-		transform.Translate(movement);
+		Vector2 movement = input * speed * Time.fixedDeltaTime;
+		rb.MovePosition(rb.position + movement);
 	}
 
-    private void OnCollisionEnter2D(Collision2D other){
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject.tag == "Macrophage")
         {
             kill();
