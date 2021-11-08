@@ -19,17 +19,21 @@ public class BCellController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spawning){
-                if (Vector3.Distance(transform.position, player.transform.position) < 5){
-                    spawning = true;
-                    sr.color = Color.gray;
-                }
+        if (!spawning)
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) < 5)
+            {
+                spawning = true;
+                sr.color = Color.gray;
+            }
         }
-        else{
-            if (Vector3.Distance(transform.position, player.transform.position) > 5){
-                    spawning = false;
-                    sr.color = Color.white;
-                }
+        else
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) > 5)
+            {
+                spawning = false;
+                sr.color = Color.white;
+            }
         }
         
     }
