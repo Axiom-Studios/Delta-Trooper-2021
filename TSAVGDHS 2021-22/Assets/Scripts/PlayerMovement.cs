@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public float deceleration = 5f;
     float currentSpeed;
     Vector2 lastDirection;
-	public float speed = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -67,9 +66,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(other.gameObject.tag == "Antibody")
         {
-            speed -= 1;
+            maxSpeed -= 1f;
+            acceleration -= 0.1f;
             Destroy(other.gameObject);
-            if (speed <= 0)
+            if (maxSpeed <= 0)
             {
                 kill();
             }
@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     public void kill()
     {
         transform.position = new Vector2(0, 0);
-        speed = 10;
+        maxSpeed = 10f;
+        acceleration = 8f;
     }
 }
