@@ -529,7 +529,7 @@ Transform:
   m_LocalScale: {x: 3.1722, y: 1.5979, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &144945518
 Rigidbody2D:
@@ -672,9 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f285da79a6642eb489da31ade2d916f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  acceleration: 10
-  deceleration: 5
+  speed: 10
 --- !u!212 &190887971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -736,9 +734,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 519420032}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &190887973
 CircleCollider2D:
@@ -817,7 +816,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 533094754474665443, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 533094754474665443, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1053,7 +1052,7 @@ Transform:
   m_LocalPosition: {x: 1.7691641, y: 0.23790532, z: -3.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 190887972}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &591045621
@@ -1493,7 +1492,7 @@ Transform:
   m_LocalScale: {x: 3.1722, y: 1.5979, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &745239362
 Rigidbody2D:
@@ -1549,13 +1548,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8577780614304828264, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5375533742849913236, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
       propertyPath: m_Name
       value: Macrophage
       objectReference: {fileID: 0}
     - target: {fileID: 5375533742849913239, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5375533742849913239, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2403,9 +2406,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Antibody
       objectReference: {fileID: 0}
+    - target: {fileID: 7785282768565976227, guid: d6fb2f09b3245d14db1ad50953a57c37, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7805413648669993039, guid: d6fb2f09b3245d14db1ad50953a57c37, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7805413648669993039, guid: d6fb2f09b3245d14db1ad50953a57c37, type: 3}
       propertyPath: m_LocalPosition.x
