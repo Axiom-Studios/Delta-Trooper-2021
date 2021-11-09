@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
 		controls = new InputMaster();
 		controls.Enable();
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
