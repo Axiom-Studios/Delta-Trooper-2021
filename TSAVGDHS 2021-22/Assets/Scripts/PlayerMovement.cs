@@ -83,9 +83,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Keyboard.current.spaceKey.IsPressed())
             {
-                sr.color = Color.gray;
+                sr.color = Color.black;
                 cellTime += Time.deltaTime;
-                Debug.Log(cellTime);
             }
             else
             {
@@ -104,5 +103,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("You won");
         sr.color = Color.magenta;
+        cellTime = 0;
     }
 }
