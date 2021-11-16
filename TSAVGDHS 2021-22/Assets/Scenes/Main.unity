@@ -2508,6 +2508,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell
       objectReference: {fileID: 0}
+    - target: {fileID: 3617064428181047446, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617064428181047446, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617064428181047446, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5660378
+      objectReference: {fileID: 0}
     - target: {fileID: 3617064428181047447, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
       propertyPath: m_RootOrder
       value: 22
