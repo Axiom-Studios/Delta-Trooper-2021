@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
 	InputMaster controls;
     private Rigidbody2D rb;
     public float maxSpeed = 10f;
-    public float acceleration = 8f;
-    public float deceleration = 5f;
+    public float acceleration = 12f;
+    public float deceleration = 1f;
     float currentSpeed;
     Vector2 lastDirection;
 
@@ -21,29 +21,7 @@ public class PlayerMovement : MonoBehaviour
 		controls = new InputMaster();
 		controls.Enable();
     }
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-		if (Mouse.current.leftButton.isPressed)
-		{
-			currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, acceleration * Time.fixedDeltaTime);
-			Debug.Log("Speed: " + currentSpeed);
-			rb.MovePosition(Vector2.MoveTowards(transform.position, mousePos, currentSpeed * Time.fixedDeltaTime));
-			lastDirection = (mousePos - (Vector2)transform.position).normalized;
-		}
-		else
-		{
-			currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.fixedDeltaTime);
-			rb.MovePosition(rb.position + lastDirection * currentSpeed * Time.fixedDeltaTime);
-		}
-		/*
-		Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
-		Vector2 movement = input * speed * Time.deltaTime;
-		transform.Translate(movement);
-		*/
-	}
-    /*
+
     void FixedUpdate()
     {
         movement();
@@ -52,11 +30,15 @@ public class PlayerMovement : MonoBehaviour
 	void movement()
 	{
 		Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
-		Vector2 movement = input * acceleration * Time.fixedDeltaTime;
-		rb.velocity += movement;
-	}
+        input = input.normalized;
+        rb.velocity += input * Time.fixedDeltaTime * acceleration;
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed));
 
-    */
+        if (rb.velocity != Vector2.zero)
+        {
+            rb.velocity -= (rb.velocity + Vector2.zero) * Time.fixedDeltaTime * deceleration;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -66,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(other.gameObject.tag == "Antibody")
         {
+            deceleration += 0.1f;
             maxSpeed -= 1f;
-            acceleration -= 0.1f;
             Destroy(other.gameObject);
             if (maxSpeed <= 0)
             {
@@ -80,6 +62,6 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = new Vector2(0, 0);
         maxSpeed = 10f;
-        acceleration = 8f;
+        deceleration = 1f;
     }
 }
