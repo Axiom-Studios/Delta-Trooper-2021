@@ -94,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (cellTime > infectTime)
             {
+                SpriteRenderer cell_sr = other.gameObject.GetComponent<SpriteRenderer>();
+                cell_sr.color = new Color(0.5f, 0.7f, 0.5f, 1f);
                 win();
             }
         }
