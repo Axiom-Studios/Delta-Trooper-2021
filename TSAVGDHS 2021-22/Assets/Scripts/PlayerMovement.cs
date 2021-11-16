@@ -7,16 +7,20 @@ public class PlayerMovement : MonoBehaviour
 {
 	InputMaster controls;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     public float maxSpeed = 10f;
     public float acceleration = 12f;
     public float deceleration = 1f;
     float currentSpeed;
+    float cellTime = 0;
+    public float infectTime = 6f;
     Vector2 lastDirection;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        sr = this.GetComponent<SpriteRenderer>();
         //input setup
 		controls = new InputMaster();
 		controls.Enable();
@@ -46,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         {
             kill();
         }
-        else if(other.gameObject.tag == "Antibody")
+        else if (other.gameObject.tag == "Antibody")
         {
             deceleration += 0.1f;
             maxSpeed -= 1f;
@@ -63,5 +67,42 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector2(0, 0);
         maxSpeed = 10f;
         deceleration = 1f;
+        sr.color = Color.white;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Cell")
+        {
+            cellTime = 0;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Cell")
+        {
+            if (Keyboard.current.spaceKey.IsPressed())
+            {
+                sr.color = Color.cyan;
+                cellTime += Time.deltaTime;
+                Debug.Log(cellTime);
+            }
+            else
+            {
+                sr.color = Color.white;
+                cellTime = 0;
+            }
+
+            if (cellTime > infectTime)
+            {
+                win();
+            }
+        }
+    }
+
+    public void win()
+    {
+        Debug.Log("You won");
+        sr.color = Color.magenta;
     }
 }
