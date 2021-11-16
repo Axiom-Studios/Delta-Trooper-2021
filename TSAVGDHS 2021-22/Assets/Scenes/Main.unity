@@ -1412,39 +1412,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &719929167 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3617064428181047433, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
-  m_PrefabInstance: {fileID: 3617064427746490310}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &719929168
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719929167}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &719929171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719929167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 313a18ef1d20e8f41922b247dd635d49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &745239359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,18 +2403,6 @@ PrefabInstance:
     - target: {fileID: 3617064428181047433, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
       propertyPath: m_Name
       value: Cell
-      objectReference: {fileID: 0}
-    - target: {fileID: 3617064428181047446, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5660378
-      objectReference: {fileID: 0}
-    - target: {fileID: 3617064428181047446, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5660378
-      objectReference: {fileID: 0}
-    - target: {fileID: 3617064428181047446, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5660378
       objectReference: {fileID: 0}
     - target: {fileID: 3617064428181047447, guid: b686347d4aed2d34c8fc3950d8df5132, type: 3}
       propertyPath: m_RootOrder
