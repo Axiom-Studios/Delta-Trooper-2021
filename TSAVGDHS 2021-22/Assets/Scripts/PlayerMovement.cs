@@ -9,11 +9,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     public float maxSpeed = 10f;
-    public float acceleration = 12f;
-    public float deceleration = 1f;
+    public float acceleration = 20f;
+    public float deceleration = 2f;
     float currentSpeed;
     float cellTime = 0;
-    public float infectTime = 6f;
+    public float infectTime = 5f;
     Vector2 lastDirection;
 
     // Start is called before the first frame update
@@ -48,11 +48,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Macrophage")
         {
+            Debug.Log("You got hit by a macrophage");
             kill();
         }
         else if (other.gameObject.tag == "Antibody")
         {
-            deceleration += 0.1f;
+            Debug.Log("You got hit by an antibody");
+            deceleration += 0.2f;
             maxSpeed -= 1f;
             Destroy(other.gameObject);
             if (maxSpeed <= 0)
@@ -64,9 +66,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void kill()
     {
+        Debug.Log("You died");
         transform.position = new Vector2(0, 0);
         maxSpeed = 10f;
-        deceleration = 1f;
+        deceleration = 2f;
         sr.color = Color.white;
     }
 
