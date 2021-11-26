@@ -8,9 +8,8 @@ public class PlayerMovement : MonoBehaviour
 	InputMaster controls;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    public float maxSpeed = 10f;
-    public float acceleration = 20f;
-    public float deceleration = 2f;
+    public float maxSpeed = 8f;
+    public float acceleration = 50f;
     float currentSpeed;
     float cellTime = 0;
     public float infectTime = 5f;
@@ -38,9 +37,9 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity += input * Time.fixedDeltaTime * acceleration;
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed));
 
-        if (rb.velocity != Vector2.zero)
+        if (input != Vector2.zero && rb.velocity != Vector2.zero)
         {
-            rb.velocity -= (rb.velocity + Vector2.zero) * Time.fixedDeltaTime * deceleration;
+            rb.velocity -= rb.velocity * Time.fixedDeltaTime;
         }
     }
 
@@ -54,10 +53,10 @@ public class PlayerMovement : MonoBehaviour
         else if (other.gameObject.tag == "Antibody")
         {
             Debug.Log("You got hit by an antibody");
-            deceleration += 0.2f;
             maxSpeed -= 1f;
+            acceleration /= 1.3f;
             Destroy(other.gameObject);
-            if (maxSpeed <= 0)
+            if (maxSpeed <= 1)
             {
                 kill();
             }
@@ -68,8 +67,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("You died");
         transform.position = new Vector2(0, 0);
-        maxSpeed = 10f;
-        deceleration = 2f;
+        maxSpeed = 8f;
+        acceleration = 50f;
         sr.color = Color.white;
     }
 
