@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Macrophage
   - Antibody
+  - Cell
   layers:
   - Default
   - TransparentFX
