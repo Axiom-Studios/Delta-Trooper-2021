@@ -19,6 +19,8 @@ public class CameraTracker : MonoBehaviour
 		float movementSpeed = (distance / (100-trackSpeed)) * 100;
 		//Set new position while preserving Z position
 		Vector2 newPosition = Vector2.MoveTowards(current, target, movementSpeed * Time.deltaTime);
-		transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+		//transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+		//temporary y lock
+		transform.position = new Vector3(newPosition.x, transform.position.y, transform.position.z);
 	}
 }
