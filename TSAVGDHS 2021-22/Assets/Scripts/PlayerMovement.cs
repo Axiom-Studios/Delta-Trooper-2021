@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +13,13 @@ public class PlayerMovement : MonoBehaviour
     public float infectTime = 5f;
     Vector2 lastDirection;
 
+	//PLAYER CLAMPING
+	public Camera clampCamera;
+	float left;
+	float right;
+	float top;
+	float bottom;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +28,26 @@ public class PlayerMovement : MonoBehaviour
         //input setup
 		controls = new InputMaster();
 		controls.Enable();
+		//Set camera corners
+		Vector3 upperLeftScreen = new Vector3(0, Screen.height, 0);
+		Vector3 upperRightScreen = new Vector3(Screen.width, Screen.height, 0);
+		Vector3 lowerLeftScreen = new Vector3(0, 0, 0);
+		Vector3 lowerRightScreen = new Vector3(Screen.width, 0, 0);
+		//Set world positions
+		left = clampCamera.ScreenToWorldPoint(Vector3.zero).x;
+		right = clampCamera.ScreenToWorldPoint(Vector3.right * Screen.width).x;
+		top = clampCamera.ScreenToWorldPoint(Vector3.up * Screen.height).y;
+		bottom = clampCamera.ScreenToWorldPoint(Vector3.zero).y;
     }
 
     void FixedUpdate()
     {
         movement();
     }
+
+	void Update() {
+		clamping();
+	}
 
 	void movement()
 	{
@@ -42,6 +61,20 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity -= rb.velocity * Time.fixedDeltaTime;
         }
     }
+
+	void clamping() {
+		float xPos = Mathf.Clamp(transform.position.x, left, right);
+		float yPos = Mathf.Clamp(transform.position.y, bottom, top);
+		Debug.Log(yPos);
+
+		if (xPos != transform.position.x) {
+			rb.velocity = new Vector2(0, rb.velocity.y);
+		}
+		if (yPos != transform.position.y) {
+			rb.velocity = new Vector2(rb.velocity.x, 0);
+		}
+		transform.position = new Vector3(xPos, yPos, transform.position.z);
+	}
 
     private void OnCollisionEnter2D(Collision2D other)
     {
