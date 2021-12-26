@@ -20,6 +20,7 @@ public class AntibodyBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        /*
         if (!chasing)
         {
             if (Vector3.Distance(transform.position, player.transform.position) < 5)
@@ -44,6 +45,13 @@ public class AntibodyBehavior : MonoBehaviour
 
                 rb.MovePosition(rb.position + velocity);
             }
+        }
+        */
+        Vector2 velocity = new Vector2(-1, 0) * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + velocity);
+        if (rb.position.x <= player.transform.position.x - 21)
+        {
+            Destroy(gameObject);
         }
     }
 }
