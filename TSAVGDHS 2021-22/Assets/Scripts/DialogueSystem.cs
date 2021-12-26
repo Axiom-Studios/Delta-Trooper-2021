@@ -28,10 +28,15 @@ public class DialogueSystem : MonoBehaviour
     {
         if (dialoguePaused)
         {
+            Time.timeScale = 0;
             dialogueBox.SetActive(true);
         }
         else
         {
+            if (!menuPaused)
+            {
+                Time.timeScale = 1;
+            }
             dialogueBox.SetActive(false);
         }
 
@@ -42,14 +47,23 @@ public class DialogueSystem : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1;
+            if (!dialoguePaused)
+            {
+                Time.timeScale = 1;
+            }
             pauseMenu.SetActive(false);
         }
 
-        if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            menuPaused = !menuPaused;
+            StartCoroutine(Pause());
         }
+    }
+
+    IEnumerator Pause ()
+    {
+        yield return new WaitUntil(() => !Keyboard.current.escapeKey.IsPressed());
+        menuPaused = !menuPaused;
     }
 
     public void Resume ()
