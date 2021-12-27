@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc24f4e9b9234244aa994d7b241d8ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguePaused: 1
+  dialoguePaused: 0
   menuPaused: 0
   dialogueText: {fileID: 34529146}
   dialogueBox: {fileID: 1476418391}
@@ -2073,7 +2073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1476418392
 RectTransform:
   m_ObjectHideFlags: 0
