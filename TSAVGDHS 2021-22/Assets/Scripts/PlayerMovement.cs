@@ -65,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
 	void clamping() {
 		float xPos = Mathf.Clamp(transform.position.x, left, right);
 		float yPos = Mathf.Clamp(transform.position.y, bottom, top);
-		Debug.Log(yPos);
 
 		if (xPos != transform.position.x) {
 			rb.velocity = new Vector2(0, rb.velocity.y);
