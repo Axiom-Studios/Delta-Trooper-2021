@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/TSAVGDHS\ 2021-22/[Ll]ibrary/
-/TSAVGDHS\ 2021-22/[Tt]emp/
-/TSAVGDHS\ 2021-22/[Oo]bj/
-/TSAVGDHS\ 2021-22/[Bb]uild/
-/TSAVGDHS\ 2021-22/[Bb]uilds/
-/TSAVGDHS\ 2021-22/[Ll]ogs/
-/TSAVGDHS\ 2021-22/[Mm]emoryCaptures/
+/Delta\ Trooper/[Ll]ibrary/
+/Delta\ Trooper/[Tt]emp/
+/Delta\ Trooper/[Oo]bj/
+/Delta\ Trooper/[Bb]uild/
+/Delta\ Trooper/[Bb]uilds/
+/Delta\ Trooper/[Ll]ogs/
+/Delta\ Trooper/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
