@@ -42,14 +42,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        movement();
+        Movement();
     }
 
 	void Update() {
-		clamping();
+		Clamping();
 	}
 
-	void movement()
+	void Movement()
 	{
 		Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
         input = input.normalized;
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-	void clamping() {
+	void Clamping() {
 		float xPos = Mathf.Clamp(transform.position.x, left, right);
 		float yPos = Mathf.Clamp(transform.position.y, bottom, top);
 
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Macrophage")
         {
             Debug.Log("You got hit by a macrophage");
-            kill();
+            Kill();
         }
         else if (other.gameObject.tag == "Antibody")
         {
@@ -90,12 +90,12 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             if (maxSpeed <= 1)
             {
-                kill();
+                Kill();
             }
         }
     }
 
-    public void kill()
+    public void Kill()
     {
         Debug.Log("You died");
         transform.position = new Vector2(0, 0);
@@ -130,12 +130,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 SpriteRenderer cell_sr = other.gameObject.GetComponent<SpriteRenderer>();
                 cell_sr.color = new Color(0.5f, 0.7f, 0.5f, 1f);
-                win();
+                Win();
             }
         }
     }
 
-    public void win()
+    public void Win()
     {
         Debug.Log("You won");
         sr.color = Color.magenta;

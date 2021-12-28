@@ -20,33 +20,6 @@ public class AntibodyBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        /*
-        if (!chasing)
-        {
-            if (Vector3.Distance(transform.position, player.transform.position) < 5)
-            {
-                chasing = true;
-                sr.color = Color.gray;
-            }
-        }
-        else
-        {
-            if (Vector3.Distance(transform.position, player.transform.position) > 5)
-            {
-                chasing = false;
-                sr.color = Color.white;
-            }
-            else
-            {
-                // Go to player
-                Vector2 direction = (Vector2)player.transform.position - rb.position;
-                direction = direction.normalized;
-                Vector2 velocity = direction * speed * Time.fixedDeltaTime;
-
-                rb.MovePosition(rb.position + velocity);
-            }
-        }
-        */
         Vector2 velocity = new Vector2(-1, 0) * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + velocity);
         if (rb.position.x <= player.transform.position.x - 21)

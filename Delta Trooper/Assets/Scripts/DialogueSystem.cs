@@ -60,13 +60,13 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    IEnumerator Pause ()
+    IEnumerator Pause()
     {
         yield return new WaitUntil(() => !Keyboard.current.escapeKey.IsPressed());
         menuPaused = !menuPaused;
     }
 
-    public void Resume ()
+    public void Resume()
     {
         if (menuPaused)
         {
