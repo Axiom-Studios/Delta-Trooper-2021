@@ -23,7 +23,7 @@ public class AntibodyBehavior : MonoBehaviour
     {
         Vector2 velocity = direction * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + velocity);
-        if (Vector2.Distance(player.transform.position, transform.position) > 30)
+        if (Vector2.Distance(player.transform.position, transform.position) > 40)
         {
             Destroy(gameObject);
         }

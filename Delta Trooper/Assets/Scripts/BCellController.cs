@@ -16,7 +16,7 @@ public class BCellController : MonoBehaviour
     {
         sr = this.GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("SpawnEnemy", 1, 0.5f);
+        InvokeRepeating("SpawnEnemy", 1, 0.2f);
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class BCellController : MonoBehaviour
     {
         if (!spawning)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) < 5)
+            if (Vector3.Distance(transform.position, player.transform.position) < 8)
             {
                 spawning = true;
                 sr.color = Color.gray;
@@ -32,7 +32,7 @@ public class BCellController : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(transform.position, player.transform.position) > 5)
+            if (Vector3.Distance(transform.position, player.transform.position) > 8)
             {
                 spawning = false;
                 sr.color = Color.white;
@@ -42,9 +42,9 @@ public class BCellController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Vector2 velocity = new Vector2(-1, 0) * speed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + velocity);
-        if (rb.position.x <= player.transform.position.x - 21)
+        Vector3 velocity = new Vector3 (-1, 0, 0) * speed * Time.fixedDeltaTime;
+        transform.position += velocity;
+        if (Vector2.Distance(player.transform.position, transform.position) > 40)
         {
             Destroy(gameObject);
         }
