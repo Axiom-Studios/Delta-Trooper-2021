@@ -54,8 +54,7 @@ public class BCellController : MonoBehaviour
         if (spawning)
         {
             Vector2 newPos = Vector2.MoveTowards(transform.position, player.transform.position, 1);
-            GameObject anti = Instantiate(antibody, newPos, transform.rotation);
-            anti.GetComponent<AntibodyBehavior>().direction = (player.transform.position - transform.position).normalized;
+            Instantiate(antibody, newPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = (player.transform.position - transform.position).normalized;
         }
     }
 }

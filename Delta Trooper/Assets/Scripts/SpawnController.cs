@@ -31,8 +31,7 @@ public class SpawnController : MonoBehaviour
         Vector3 spawnPos = transform.position;
         spawnPos.x = player.transform.position.x + 21;
         spawnPos.y = Random.Range(minY, maxY);
-        GameObject anti = Instantiate(antibody, spawnPos, transform.rotation);
-        anti.GetComponent<AntibodyBehavior>().direction = new Vector2 (-1,0);
+        Instantiate(antibody, spawnPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = new Vector2 (-1,0);
     }
 
     void SpawnMacrophage()
