@@ -9,11 +9,15 @@ public class SpawnController : MonoBehaviour
     public static float spawnrate = 1;
     public GameObject player;
     public GameObject antibody;
+    public GameObject macrophage;
+    public GameObject bCell;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("SpawnEnemy", spawnrate, spawnrate);
+        Invoke("SpawnMacrophage", 5f);
+        InvokeRepeating("SpawnAntibody", 15f, spawnrate);
+        Invoke("SpawnBCell", 0f);
     }
 
     // Update is called once per frame
@@ -22,11 +26,27 @@ public class SpawnController : MonoBehaviour
         
     }
 
-    void SpawnEnemy()
+    void SpawnAntibody()
     {
         Vector3 spawnPos = transform.position;
         spawnPos.x = player.transform.position.x + 21;
         spawnPos.y = Random.Range(minY, maxY);
-        Instantiate(antibody, spawnPos, transform.rotation);
+        GameObject anti = Instantiate(antibody, spawnPos, transform.rotation);
+        anti.GetComponent<AntibodyBehavior>().direction = new Vector2 (-1,0);
+    }
+
+    void SpawnMacrophage()
+    {
+        Vector3 spawnPos = transform.position;
+        spawnPos.x = player.transform.position.x + 21;
+        spawnPos.y = Random.Range(minY, maxY);
+        Instantiate(macrophage, spawnPos, transform.rotation);
+    }
+    void SpawnBCell()
+    {
+        Vector3 spawnPos = transform.position;
+        spawnPos.x = player.transform.position.x + 1;
+        spawnPos.y = Random.Range(minY, maxY);
+        Instantiate(bCell, spawnPos, transform.rotation);
     }
 }

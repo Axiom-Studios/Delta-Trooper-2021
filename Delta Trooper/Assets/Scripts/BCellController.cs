@@ -8,6 +8,9 @@ public class BCellController : MonoBehaviour
     public GameObject player;
     public GameObject antibody;
     private SpriteRenderer sr;
+    private Rigidbody2D rb;
+    private float speed = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +40,22 @@ public class BCellController : MonoBehaviour
         }
         
     }
+    void FixedUpdate()
+    {
+        Vector2 velocity = new Vector2(-1, 0) * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + velocity);
+        if (rb.position.x <= player.transform.position.x - 21)
+        {
+            Destroy(gameObject);
+        }
+    }
     public void SpawnEnemy()
     {
         if (spawning)
         {
             Vector2 newPos = Vector2.MoveTowards(transform.position, player.transform.position, 1);
-            Instantiate(antibody, newPos, transform.rotation);
+            GameObject anti = Instantiate(antibody, newPos, transform.rotation);
+            anti.GetComponent<AntibodyBehavior>().direction = (player.transform.position - transform.position).normalized;
         }
     }
 }

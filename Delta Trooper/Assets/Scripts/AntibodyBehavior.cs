@@ -9,6 +9,7 @@ public class AntibodyBehavior : MonoBehaviour
     private SpriteRenderer sr;
     private float speed = 7;
     public GameObject player;
+    public Vector2 direction = new Vector2(0, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +21,9 @@ public class AntibodyBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 velocity = new Vector2(-1, 0) * speed * Time.fixedDeltaTime;
+        Vector2 velocity = direction * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + velocity);
-        if (rb.position.x <= player.transform.position.x - 21)
+        if (Vector2.Distance(player.transform.position, transform.position) > 30)
         {
             Destroy(gameObject);
         }

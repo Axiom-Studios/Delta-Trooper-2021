@@ -20,30 +20,10 @@ public class MacrophageBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!chasing)
-        {
-            if (Vector3.Distance(transform.position, player.transform.position) < 10)
-            {
-                chasing = true;
-                sr.color = Color.gray;
-            }
-        }
-        else
-        {
-            if (Vector3.Distance(transform.position, player.transform.position) > 10)
-            {
-                chasing = false;
-                sr.color = Color.white;
-            }
-            else
-            {
-                // Go to player
-                Vector2 direction = (Vector2)player.transform.position - rb.position;
-                direction = direction.normalized;
-                Vector2 velocity = direction * speed * Time.fixedDeltaTime;
-
-                rb.MovePosition(rb.position + velocity);
-            }
-        }
+        // Go to player
+        Vector2 direction = (Vector2)player.transform.position - rb.position;
+        direction = direction.normalized;
+        Vector2 velocity = direction * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + velocity);
     }
 }
