@@ -13,6 +13,9 @@ public class DialogueSystem : MonoBehaviour
     public Text dialogueText;
     public GameObject dialogueBox;
     public GameObject pauseMenu;
+    public float messageDuration = 5f;
+    public static List<string> sentencesQueue = new List<string>();
+    float t1 = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +23,14 @@ public class DialogueSystem : MonoBehaviour
 		controls.Enable();
 
         dialogueText = GetComponentInChildren<Text>();
-        dialogueText.text = "Hola it worked";
+        sentencesQueue.Add("Woah woah woah");
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Pause
+
         if (dialoguePaused)
         {
             Time.timeScale = 0;
@@ -57,6 +62,35 @@ public class DialogueSystem : MonoBehaviour
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             StartCoroutine(Pause());
+        }
+
+        // Dialogue
+
+        if (sentencesQueue.Count == 0)
+        {
+            dialoguePaused = false;
+        }
+        else
+        {
+            dialoguePaused = true;
+            if (dialogueText.text != sentencesQueue[0])
+            {
+                dialogueText.text = sentencesQueue[0];
+                t1 = Time.unscaledTime;
+            }
+            if (menuPaused)
+            {
+                t1 = Time.unscaledTime;
+            }
+
+            if (Time.unscaledTime - t1 > messageDuration)
+            {
+                sentencesQueue.RemoveAt(0);
+                if (sentencesQueue.Count == 0)
+                {
+                    dialoguePaused = false;
+                }
+            }
         }
     }
 

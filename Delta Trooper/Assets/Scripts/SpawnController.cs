@@ -17,7 +17,7 @@ public class SpawnController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         Invoke("SpawnMacrophage", 5f);
         InvokeRepeating("SpawnAntibody", 15f, spawnrate);
-        Invoke("SpawnBCell", 30f);
+        InvokeRepeating("SpawnBCell", 30f, 20f);
     }
 
     // Update is called once per frame
