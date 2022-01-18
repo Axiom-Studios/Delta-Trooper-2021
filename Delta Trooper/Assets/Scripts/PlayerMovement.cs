@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     public GameObject endScreen;
+    public GameObject dialogueSystem;
     public float maxSpeed = 8f;
     public float acceleration = 50f;
     public int lives = 5;
@@ -55,6 +56,15 @@ public class PlayerMovement : MonoBehaviour
 	{
 		Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
         input = input.normalized;
+        if (input != Vector2.zero)
+        {
+            DialogueSystem.movementExplained = true;
+        }
+        if (!DialogueSystem.movementExplained && Time.time > 5f)
+        {
+            DialogueSystem.sentencesQueue.Add("Use WASD to move");
+            DialogueSystem.movementExplained = true;
+        }
         rb.velocity += input * Time.fixedDeltaTime * acceleration;
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed));
 
@@ -82,11 +92,21 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Macrophage")
         {
             Debug.Log("You got hit by a macrophage");
+            if (!DialogueSystem.macrophagesExplained)
+            {
+                DialogueSystem.sentencesQueue.Add("Ouch! Try to avoid macrophages.");
+                DialogueSystem.macrophagesExplained = true;
+            }
             Kill();
         }
         else if (other.gameObject.tag == "Antibody")
         {
             Debug.Log("You got hit by an antibody");
+            if (!DialogueSystem.antibodiesExplained)
+            {
+                DialogueSystem.sentencesQueue.Add("Avoid antibodies! They slow you down and too many will kill you!");
+                DialogueSystem.antibodiesExplained = true;
+            }
             maxSpeed -= 1f;
             acceleration /= 1.3f;
             Destroy(other.gameObject);

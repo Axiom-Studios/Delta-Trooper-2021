@@ -16,6 +16,10 @@ public class DialogueSystem : MonoBehaviour
     public float messageDuration = 5f;
     public static List<string> sentencesQueue = new List<string>();
     float t1 = 0;
+    public static bool macrophagesExplained = false;
+    public static bool antibodiesExplained = false;
+    public static bool movementExplained = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +28,6 @@ public class DialogueSystem : MonoBehaviour
 
         dialogueText = GetComponentInChildren<Text>();
         dialogueText.text = "[Text component loaded]";
-        sentencesQueue.Add("Woah woah woah");
     }
 
     // Update is called once per frame
