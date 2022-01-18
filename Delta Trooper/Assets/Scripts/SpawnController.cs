@@ -6,7 +6,7 @@ public class SpawnController : MonoBehaviour
 {
     public static int minY = -7;
     public static int maxY = 7;
-    public static float spawnrate = 1;
+    public static float spawnrate = 0.5f;
     public GameObject player;
     public GameObject antibody;
     public GameObject macrophage;
