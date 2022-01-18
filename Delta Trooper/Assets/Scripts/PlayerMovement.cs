@@ -6,8 +6,10 @@ public class PlayerMovement : MonoBehaviour
 	InputMaster controls;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    public GameObject endScreen;
     public float maxSpeed = 8f;
     public float acceleration = 50f;
+    public int lives = 5;
     float currentSpeed;
     float cellTime = 0;
     public float infectTime = 5f;
@@ -98,10 +100,20 @@ public class PlayerMovement : MonoBehaviour
     public void Kill()
     {
         Debug.Log("You died");
-        transform.position = new Vector2(0, 0);
-        maxSpeed = 8f;
-        acceleration = 50f;
-        sr.color = Color.white;
+        lives--;
+        if (lives <= 0)
+        {
+            Time.timeScale = 0;
+            endScreen.SetActive(true);
+        }
+        else
+        {
+            transform.position = new Vector2(0, 0);
+            maxSpeed = 8f;
+            acceleration = 50f;
+            sr.color = Color.white;
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

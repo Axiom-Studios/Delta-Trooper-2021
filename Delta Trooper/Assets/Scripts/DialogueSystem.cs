@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class DialogueSystem : MonoBehaviour
 {
     InputMaster controls;
-    public bool dialoguePaused = true;
+    public bool dialoguePaused = false;
     public bool menuPaused = false;
     
     public Text dialogueText;
@@ -23,6 +23,7 @@ public class DialogueSystem : MonoBehaviour
 		controls.Enable();
 
         dialogueText = GetComponentInChildren<Text>();
+        dialogueText.text = "[Text component loaded]";
         sentencesQueue.Add("Woah woah woah");
     }
 
