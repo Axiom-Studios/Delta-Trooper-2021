@@ -22,10 +22,12 @@ public class PlayerMovement : MonoBehaviour
 	float right;
 	float top;
 	float bottom;
+    float t1;
 
     // Start is called before the first frame update
     void Start()
     {
+        t1 = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
         sr = this.GetComponent<SpriteRenderer>();
         //input setup
@@ -60,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         {
             DialogueSystem.movementExplained = true;
         }
-        if (!DialogueSystem.movementExplained && Time.time > 5f)
+        if (!DialogueSystem.movementExplained && t1 - Time.time > 5f)
         {
             DialogueSystem.sentencesQueue.Add("Use WASD to move");
             DialogueSystem.movementExplained = true;
