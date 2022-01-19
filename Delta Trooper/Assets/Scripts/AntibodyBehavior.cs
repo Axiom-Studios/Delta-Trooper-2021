@@ -23,6 +23,7 @@ public class AntibodyBehavior : MonoBehaviour
     {
         Vector2 velocity = direction * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + velocity);
+        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-1*direction.y, -1*direction.x) * Mathf.Rad2Deg, Vector3.forward);
         if (Vector2.Distance(player.transform.position, transform.position) > 40)
         {
             Destroy(gameObject);

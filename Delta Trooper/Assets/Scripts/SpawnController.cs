@@ -15,7 +15,7 @@ public class SpawnController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        Invoke("SpawnMacrophage", 0f);
+        Invoke("SpawnMacrophage", 5f);
         InvokeRepeating("SpawnAntibody", 15f, spawnrate);
         InvokeRepeating("SpawnBCell", 30f, 20f);
     }
@@ -29,7 +29,7 @@ public class SpawnController : MonoBehaviour
     void SpawnAntibody()
     {
         Vector3 spawnPos = transform.position;
-        spawnPos.x = transform.position.x - 21;
+        spawnPos.x = transform.position.x + 21;
         spawnPos.y = Random.Range(minY, maxY);
         Instantiate(antibody, spawnPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = new Vector2 (-1,0);
     }
@@ -37,7 +37,7 @@ public class SpawnController : MonoBehaviour
     void SpawnMacrophage()
     {
         Vector3 spawnPos = transform.position;
-        spawnPos.x = transform.position.x + 21;
+        spawnPos.x = transform.position.x - 21;
         spawnPos.y = Random.Range(minY, maxY);
         Instantiate(macrophage, spawnPos, transform.rotation);
     }
