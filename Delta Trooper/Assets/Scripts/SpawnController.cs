@@ -29,7 +29,7 @@ public class SpawnController : MonoBehaviour
     void SpawnAntibody()
     {
         Vector3 spawnPos = transform.position;
-        spawnPos.x = transform.position.x + 21;
+        spawnPos.x = transform.position.x - 21;
         spawnPos.y = Random.Range(minY, maxY);
         Instantiate(antibody, spawnPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = new Vector2 (-1,0);
     }
