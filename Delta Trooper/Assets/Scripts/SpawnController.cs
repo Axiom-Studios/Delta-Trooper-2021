@@ -11,9 +11,12 @@ public class SpawnController : MonoBehaviour
     public GameObject antibody;
     public GameObject macrophage;
     public GameObject bCell;
+
     // Start is called before the first frame update
     void Start()
     {
+        public Object[] demoSpawn = new Object[] {"hi", macrophage, 2, 3};
+        demoSpawn.AddRange();
         player = GameObject.FindGameObjectWithTag("Player");
         Invoke("SpawnMacrophage", 5f);
         InvokeRepeating("SpawnAntibody", 15f, spawnrate);
