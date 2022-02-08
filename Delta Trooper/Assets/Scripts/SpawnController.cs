@@ -11,22 +11,39 @@ public class SpawnController : MonoBehaviour
     public GameObject antibody;
     public GameObject macrophage;
     public GameObject bCell;
-
+    public List<(string, float, float, float, bool)> demoSpawn = new List<(string, float, float, float, bool)>
+    {
+        ("SpawnAntibody", 1f, 5f, 0.5f, false)
+    };
+    public float startTime;
     // Start is called before the first frame update
     void Start()
     {
-        public Object[] demoSpawn = new Object[] {"hi", macrophage, 2, 3};
-        demoSpawn.AddRange();
+        startTime = Time.time;
         player = GameObject.FindGameObjectWithTag("Player");
         Invoke("SpawnMacrophage", 5f);
-        InvokeRepeating("SpawnAntibody", 15f, spawnrate);
+        //InvokeRepeating("SpawnAntibody", 15f, spawnrate);
         InvokeRepeating("SpawnBCell", 30f, 20f);
+        foreach(var i in demoSpawn){
+            if (i.Item4 == -1)
+            {
+                Invoke(i.Item1, i.Item2);
+            }
+            else
+            {
+                InvokeRepeating(i.Item1, i.Item2, i.Item4);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        foreach(var i in demoSpawn){
+            if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
+                CancelInvoke(i.Item1);
+            }
+        }
     }
 
     void SpawnAntibody()
