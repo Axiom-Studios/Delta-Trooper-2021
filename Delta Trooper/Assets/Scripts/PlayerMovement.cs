@@ -24,6 +24,12 @@ public class PlayerMovement : MonoBehaviour
 	float bottom;
     float t1;
 
+    //DASHING
+    bool dashing = false;
+    Vector3 dashStart;
+    public float dashSpeed;
+    public float dashDistance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,27 +58,44 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update() {
 		Clamping();
+        StopDash();
 	}
 
 	void Movement()
 	{
-		Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
-        input = input.normalized;
-        if (input != Vector2.zero)
-        {
-            DialogueSystem.movementExplained = true;
-        }
-        if (!DialogueSystem.movementExplained && t1 - Time.time > 5f)
-        {
-            DialogueSystem.sentencesQueue.Add("Use WASD to move");
-            DialogueSystem.movementExplained = true;
-        }
-        rb.velocity += input * Time.fixedDeltaTime * acceleration;
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed));
+        if (!dashing) {
+    		Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
+            input = input.normalized;
+            if (input != Vector2.zero)
+            {
+                DialogueSystem.movementExplained = true;
+            }
+            if (!DialogueSystem.movementExplained && t1 - Time.time > 5f)
+            {
+                DialogueSystem.sentencesQueue.Add("Use WASD to move");
+                DialogueSystem.movementExplained = true;
+            }
+            rb.velocity += input * Time.fixedDeltaTime * acceleration;
+            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed));
 
-        if (input != Vector2.zero && rb.velocity != Vector2.zero)
-        {
-            rb.velocity -= rb.velocity * Time.fixedDeltaTime;
+            if (input != Vector2.zero && rb.velocity != Vector2.zero)
+            {
+                rb.velocity -= rb.velocity * Time.fixedDeltaTime;
+            }
+        }
+    }
+    
+    public void Dash() {
+        dashing = true;
+        Vector2 input  = controls.Player.Movement.ReadValue<Vector2>();
+        dashStart = transform.position;
+        rb.velocity = input;
+    }
+
+    void StopDash() {
+        if (Vector3.Distance(dashStart, transform.position) >= dashDistance && dashing) {
+            rb.velocity = Vector3.zero;
+            dashing = false;
         }
     }
 
