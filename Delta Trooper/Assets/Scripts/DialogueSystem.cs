@@ -70,6 +70,11 @@ public class DialogueSystem : MonoBehaviour
 
         // Dialogue
 
+        if (Keyboard.current[Key.Space].wasPressedThisFrame && sentencesQueue.Count > 0)
+        {
+            sentencesQueue.RemoveAt(0);
+        }
+
         if (sentencesQueue.Count == 0)
         {
             dialoguePaused = false;
