@@ -18,7 +18,6 @@ public class DialogueSystem : MonoBehaviour
     float t1 = 0;
     public static bool macrophagesExplained = false;
     public static bool antibodiesExplained = false;
-    public static bool movementExplained = false;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +68,11 @@ public class DialogueSystem : MonoBehaviour
         }
 
         // Dialogue
+
+        if (Keyboard.current[Key.Space].wasPressedThisFrame && sentencesQueue.Count > 0)
+        {
+            sentencesQueue.RemoveAt(0);
+        }
 
         if (sentencesQueue.Count == 0)
         {
