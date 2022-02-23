@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 	float right;
 	float top;
 	float bottom;
-    public static float t1;
+    float t1;
 
     // Start is called before the first frame update
     void Start()
