@@ -22,13 +22,14 @@ public class PlayerMovement : MonoBehaviour
 	float right;
 	float top;
 	float bottom;
-    float t1;
+    float t1; // <-- WHAT IS IT?????
 
     //DASHING
     bool dashing = false;
-    Vector3 dashStart;
+    float dashStart;
     public float dashSpeed;
-    public float dashDistance;
+    public float dashTime;
+    Vector2 dashDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update() {
 		Clamping();
-        StopDash();
+        Dash();
 	}
 
 	void Movement()
@@ -86,17 +87,18 @@ public class PlayerMovement : MonoBehaviour
     }
     
     public void Dash() {
-        dashing = true;
-        Vector2 input  = controls.Player.Movement.ReadValue<Vector2>();
-        dashStart = transform.position;
-        rb.velocity = input;
-    }
-
-    void StopDash() {
-        if (Vector3.Distance(dashStart, transform.position) >= dashDistance && dashing) {
-            rb.velocity = Vector3.zero;
+        if (!dashing && controls.Player.Dash.triggered) {
+            dashing = true;
+            dashStart = Time.time;
+            dashDirection = controls.Player.Movement.ReadValue<Vector2>();
+        }
+        if (Time.time - dashStart >= dashTime) {
             dashing = false;
         }
+        if (dashing) {
+            transform.position += (Vector3) (dashDirection * dashSpeed * Time.deltaTime);
+        }
+
     }
 
 	void Clamping() {

@@ -243,8 +243,8 @@ MonoBehaviour:
   lives: 5
   infectTime: 5
   clampCamera: {fileID: 519420031}
-  dashSpeed: 10
-  dashDistance: 3
+  dashSpeed: 25
+  dashTime: 0.25
 --- !u!212 &190887971
 SpriteRenderer:
   m_ObjectHideFlags: 0
