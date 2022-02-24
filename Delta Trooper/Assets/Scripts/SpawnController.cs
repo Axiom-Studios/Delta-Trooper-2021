@@ -26,14 +26,24 @@ public class SpawnController : MonoBehaviour
             ("SpawnMacrophage", 11f, -1f, -1f)
         }
     };
+    public List<int> levelLengths = new List<int>
+    {
+        10, 10, 10, 10
+    };
     public List<(string, float, float, float)> spawning;
     public float startTime;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable(){
+        Debug.Log("Added Delegate");
+        SceneManager.sceneLoaded += levelLoaded;
+    }
+
+    void levelLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Started");
         startTime = Time.time;
         player = GameObject.FindGameObjectWithTag("Player");
-        spawning = spawnList[SceneManager.GetActiveScene().buildIndex - 1];
+        spawning = spawnList[LevelManagement.level];
         
         foreach(var i in spawning){
             if (i.Item4 == -1)
@@ -45,6 +55,7 @@ public class SpawnController : MonoBehaviour
                 InvokeRepeating(i.Item1, i.Item2, i.Item4);
             }
         }
+        Invoke("changeLevel", levelLengths[LevelManagement.level]);
     }
 
     // Update is called once per frame
@@ -78,5 +89,10 @@ public class SpawnController : MonoBehaviour
         spawnPos.x = transform.position.x + 21;
         spawnPos.y = Random.Range(minY, maxY);
         Instantiate(bCell, spawnPos, transform.rotation);
+    }
+
+    void changeLevel(){
+        LevelManagement.level += 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

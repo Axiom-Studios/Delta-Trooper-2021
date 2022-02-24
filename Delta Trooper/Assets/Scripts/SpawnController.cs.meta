@@ -3,7 +3,11 @@ guid: 8efc121cad81dd449bc51419fd5d90f9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - antibody: {fileID: 5770667286974816222, guid: d6fb2f09b3245d14db1ad50953a57c37, type: 3}
+  - macrophage: {fileID: 5375533742849913236, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
+  - bCell: {fileID: 533094754474665446, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

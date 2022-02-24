@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Bloodstream.unity
+    guid: 169dd25903ec6f641a13114ef54bf26e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 99bfc604fa41f4d46a578c080b97b5fd, type: 2}
