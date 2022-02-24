@@ -27,9 +27,12 @@ public class PlayerMovement : MonoBehaviour
     //DASHING
     bool dashing = false;
     float dashStart;
+    float dashEnd;
     public float dashSpeed;
     public float dashTime;
+    public float dashCooldown;
     Vector2 dashDirection;
+    CircleCollider2D playerCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         t1 = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
         sr = this.GetComponent<SpriteRenderer>();
+        playerCollider = gameObject.GetComponent<CircleCollider2D>();
         //input setup
 		controls = new InputMaster();
 		controls.Enable();
@@ -50,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
 		right = clampCamera.ScreenToWorldPoint(Vector3.right * Screen.width).x;
 		top = clampCamera.ScreenToWorldPoint(Vector3.up * Screen.height).y;
 		bottom = clampCamera.ScreenToWorldPoint(Vector3.zero).y;
+
+        dashEnd = -dashCooldown;
     }
 
     void FixedUpdate()
@@ -87,15 +93,19 @@ public class PlayerMovement : MonoBehaviour
     }
     
     public void Dash() {
-        if (!dashing && controls.Player.Dash.triggered) {
+        Debug.Log(dashEnd);
+        if (!dashing && controls.Player.Dash.triggered && Time.time - dashCooldown >= dashEnd) { // START DASH
             dashing = true;
             dashStart = Time.time;
             dashDirection = controls.Player.Movement.ReadValue<Vector2>();
+            playerCollider.enabled = false;
         }
-        if (Time.time - dashStart >= dashTime) {
+        if (dashing && Time.time - dashStart >= dashTime) { // STOP DASH
             dashing = false;
+            playerCollider.enabled = true;
+            dashEnd = Time.time;
         }
-        if (dashing) {
+        if (dashing) { // DASH MOVEMENT
             transform.position += (Vector3) (dashDirection * dashSpeed * Time.deltaTime);
         }
 

@@ -245,6 +245,7 @@ MonoBehaviour:
   clampCamera: {fileID: 519420031}
   dashSpeed: 25
   dashTime: 0.25
+  dashCooldown: 5
 --- !u!212 &190887971
 SpriteRenderer:
   m_ObjectHideFlags: 0
