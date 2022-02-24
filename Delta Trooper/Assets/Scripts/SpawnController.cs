@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnController : MonoBehaviour
 {
@@ -11,21 +12,30 @@ public class SpawnController : MonoBehaviour
     public GameObject antibody;
     public GameObject macrophage;
     public GameObject bCell;
-    public List<(string, float, float, float)> demoSpawn = new List<(string, float, float, float)>
+    //Function, start, end, rate
+    public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
-        ("SpawnAntibody", 1f, 5f, 0.5f),
-        ("SpawnMacrophage", 5f, -1f, -1f)
+        new List<(string, float, float, float)>{
+            ("SpawnAntibody", 1f, 5f, 0.5f),
+            ("SpawnMacrophage", 5f, -1f, -1f),
+            ("SpawnBCell", 30f, -1f, 20f)
+        },
+        new List<(string, float, float, float)>{
+            ("SpawnBCell", 1f, -1f, 5f),
+            ("SpawnAntibody", 6f, 10f, 0.5f),
+            ("SpawnMacrophage", 11f, -1f, -1f)
+        }
     };
+    public List<(string, float, float, float)> spawning;
     public float startTime;
     // Start is called before the first frame update
     void Start()
     {
         startTime = Time.time;
         player = GameObject.FindGameObjectWithTag("Player");
-        //Invoke("SpawnMacrophage", 5f);
-        //InvokeRepeating("SpawnAntibody", 15f, spawnrate);
-        InvokeRepeating("SpawnBCell", 30f, 20f);
-        foreach(var i in demoSpawn){
+        spawning = spawnList[SceneManager.GetActiveScene().buildIndex - 1];
+        
+        foreach(var i in spawning){
             if (i.Item4 == -1)
             {
                 Invoke(i.Item1, i.Item2);
@@ -40,7 +50,7 @@ public class SpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(var i in demoSpawn){
+        foreach(var i in spawning){
             if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
                 CancelInvoke(i.Item1);
             }
