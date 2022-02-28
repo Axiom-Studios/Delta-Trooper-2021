@@ -12,6 +12,7 @@ public class SpawnController : MonoBehaviour
     public GameObject antibody;
     public GameObject macrophage;
     public GameObject bCell;
+    public static int level = 0;
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
@@ -33,19 +34,25 @@ public class SpawnController : MonoBehaviour
     public List<(string, float, float, float)> spawning;
     public float startTime;
     // Start is called before the first frame update
-    void OnEnable(){
-        Debug.Log("Added Delegate");
-        SceneManager.sceneLoaded += levelLoaded;
+    void Start(){
+        player = GameObject.FindGameObjectWithTag("Player");
+        LoadLevel();
     }
 
-    void levelLoaded(Scene scene, LoadSceneMode mode)
+    void LoadLevel()
     {
-        Debug.Log(spawning);
+        Debug.Log("Loading Level");
+        foreach(var i in GameObject.FindGameObjectsWithTag("Antibody")){
+            Destroy(i);
+        }
+        foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
+            Destroy(i);
+        }
+        player.transform.position = new Vector2 (0, 0);
         startTime = Time.time;
-        player = GameObject.FindGameObjectWithTag("Player");
-        spawning = spawnList[LevelManagement.level];
+        spawning = spawnList[level];
         
-        foreach(var i in spawnList[LevelManagement.level]){
+        foreach(var i in spawnList[level]){
             if (i.Item4 == -1)
             {
                 Invoke(i.Item1, i.Item2);
@@ -55,7 +62,7 @@ public class SpawnController : MonoBehaviour
                 InvokeRepeating(i.Item1, i.Item2, i.Item4);
             }
         }
-        Invoke("changeLevel", levelLengths[LevelManagement.level]);
+        Invoke("ChangeLevel", levelLengths[level]);
     }
 
     // Update is called once per frame
@@ -91,8 +98,8 @@ public class SpawnController : MonoBehaviour
         Instantiate(bCell, spawnPos, transform.rotation);
     }
 
-    void changeLevel(){
-        LevelManagement.level += 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    void ChangeLevel(){
+        level += 1;
+        LoadLevel();
     }
 }
