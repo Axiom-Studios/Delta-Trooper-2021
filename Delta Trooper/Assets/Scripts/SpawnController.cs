@@ -40,12 +40,12 @@ public class SpawnController : MonoBehaviour
 
     void levelLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Started");
+        Debug.Log(spawning);
         startTime = Time.time;
         player = GameObject.FindGameObjectWithTag("Player");
         spawning = spawnList[LevelManagement.level];
         
-        foreach(var i in spawning){
+        foreach(var i in spawnList[LevelManagement.level]){
             if (i.Item4 == -1)
             {
                 Invoke(i.Item1, i.Item2);
@@ -61,7 +61,7 @@ public class SpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(var i in spawning){
+        foreach(var i in spawnList[LevelManagement.level]){
             if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
                 CancelInvoke(i.Item1);
             }
