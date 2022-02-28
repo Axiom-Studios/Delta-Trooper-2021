@@ -10,6 +10,7 @@ public class AntibodyBehavior : MonoBehaviour
     private float speed = 7;
     public GameObject player;
     public Vector2 direction = new Vector2(0, 0);
+    
     // Start is called before the first frame update
     void Start()
     {
