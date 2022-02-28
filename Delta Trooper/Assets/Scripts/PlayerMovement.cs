@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
 		bottom = clampCamera.ScreenToWorldPoint(Vector3.zero).y;
 
         dashEnd = -dashCooldown;
+        DialogueSystem.sentencesQueue.Add("WASD to move\n\n\n[SPACE] to skip dialogue");
     }
 
     void FixedUpdate()
@@ -71,17 +72,8 @@ public class PlayerMovement : MonoBehaviour
 	void Movement()
 	{
         if (!dashing) {
-    		Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
+    		    Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
             input = input.normalized;
-            if (input != Vector2.zero)
-            {
-                DialogueSystem.movementExplained = true;
-            }
-            if (!DialogueSystem.movementExplained && t1 - Time.time > 5f)
-            {
-                DialogueSystem.sentencesQueue.Add("Use WASD to move");
-                DialogueSystem.movementExplained = true;
-            }
             rb.velocity += input * Time.fixedDeltaTime * acceleration;
             rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed));
 
@@ -104,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             dashing = false;
             playerCollider.enabled = true;
             dashEnd = Time.time;
+
         }
         if (dashing) { // DASH MOVEMENT
             transform.position += (Vector3) (dashDirection * dashSpeed * Time.deltaTime);
