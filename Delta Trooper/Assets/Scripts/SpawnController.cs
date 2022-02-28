@@ -12,6 +12,7 @@ public class SpawnController : MonoBehaviour
     public GameObject antibody;
     public GameObject macrophage;
     public GameObject bCell;
+    public static int level = 0;
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
@@ -26,16 +27,32 @@ public class SpawnController : MonoBehaviour
             ("SpawnMacrophage", 11f, -1f, -1f)
         }
     };
+    public List<int> levelLengths = new List<int>
+    {
+        10, 10, 10, 10
+    };
     public List<(string, float, float, float)> spawning;
     public float startTime;
     // Start is called before the first frame update
-    void Start()
-    {
-        startTime = Time.time;
+    void Start(){
         player = GameObject.FindGameObjectWithTag("Player");
-        spawning = spawnList[SceneManager.GetActiveScene().buildIndex - 1];
+        LoadLevel();
+    }
+
+    void LoadLevel()
+    {
+        Debug.Log("Loading Level");
+        foreach(var i in GameObject.FindGameObjectsWithTag("Antibody")){
+            Destroy(i);
+        }
+        foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
+            Destroy(i);
+        }
+        player.transform.position = new Vector2 (0, 0);
+        startTime = Time.time;
+        spawning = spawnList[level];
         
-        foreach(var i in spawning){
+        foreach(var i in spawnList[level]){
             if (i.Item4 == -1)
             {
                 Invoke(i.Item1, i.Item2);
@@ -45,12 +62,13 @@ public class SpawnController : MonoBehaviour
                 InvokeRepeating(i.Item1, i.Item2, i.Item4);
             }
         }
+        Invoke("ChangeLevel", levelLengths[level]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach(var i in spawning){
+        foreach(var i in spawnList[LevelManagement.level]){
             if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
                 CancelInvoke(i.Item1);
             }
@@ -78,5 +96,10 @@ public class SpawnController : MonoBehaviour
         spawnPos.x = transform.position.x + 21;
         spawnPos.y = Random.Range(minY, maxY);
         Instantiate(bCell, spawnPos, transform.rotation);
+    }
+
+    void ChangeLevel(){
+        level += 1;
+        LoadLevel();
     }
 }
