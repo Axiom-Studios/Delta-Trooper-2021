@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 8f;
     public float acceleration = 50f;
     public int lives = 5;
+    public static int health = 100;
     float currentSpeed;
     float cellTime = 0;
     public float infectTime = 5f;
@@ -155,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
                 DialogueSystem.antibodiesExplained = true;
             }
             maxSpeed -= 1f;
+            health -= 15;
             acceleration /= 1.3f;
             Destroy(other.gameObject);
             if (maxSpeed <= 1)
