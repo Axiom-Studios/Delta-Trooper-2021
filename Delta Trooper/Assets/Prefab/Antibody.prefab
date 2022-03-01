@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4408410313896550824}
   - component: {fileID: 8774124097631897912}
   - component: {fileID: 7785282768565976227}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Antibody
   m_TagString: Antibody
   m_Icon: {fileID: 0}

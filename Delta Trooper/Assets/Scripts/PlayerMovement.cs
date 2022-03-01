@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerMovement : MonoBehaviour
 {
 	InputMaster controls;
@@ -34,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
     Vector2 dashDirection;
     CircleCollider2D playerCollider;
 
+    // Audio
+
+    private AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip killSound;
+    public AudioClip deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
         dashEnd = -dashCooldown;
         DialogueSystem.sentencesQueue.Add("WASD to move\n\n\n[SPACE] to skip dialogue");
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -124,17 +134,24 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("You got hit by a macrophage");
             if (!DialogueSystem.macrophagesExplained)
             {
-                DialogueSystem.sentencesQueue.Add("Ouch! Try to avoid macrophages.");
+                DialogueSystem.sentencesQueue.Add("Ouch! You were hit by a killer T cell");
+                DialogueSystem.sentencesQueue.Add("Killer T cells will hunt you down");
                 DialogueSystem.macrophagesExplained = true;
             }
             Kill();
         }
         else if (other.gameObject.tag == "Antibody")
         {
+            if (lives >= 0)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
             Debug.Log("You got hit by an antibody");
             if (!DialogueSystem.antibodiesExplained)
             {
-                DialogueSystem.sentencesQueue.Add("Avoid antibodies! They slow you down and too many will kill you!");
+                DialogueSystem.sentencesQueue.Add("Avoid antibodies!");
+                DialogueSystem.sentencesQueue.Add("Antibodies bind to your receptors making it harder to infect cells");
+                DialogueSystem.sentencesQueue.Add("Too many will slow you down and eventually kill you!");
                 DialogueSystem.antibodiesExplained = true;
             }
             maxSpeed -= 1f;
@@ -151,13 +168,16 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("You died");
         lives--;
-        if (lives <= 0)
+        if (lives == 0)
         {
+            audioSource.PlayOneShot(deathSound);
             Time.timeScale = 0;
             endScreen.SetActive(true);
+            lives = -1;
         }
-        else
+        else if (lives > 0)
         {
+            audioSource.PlayOneShot(killSound);
             transform.position = new Vector2(0, 0);
             maxSpeed = 8f;
             acceleration = 50f;
