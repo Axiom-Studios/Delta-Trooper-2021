@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerMovement : MonoBehaviour
 {
 	InputMaster controls;
@@ -34,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
     Vector2 dashDirection;
     CircleCollider2D playerCollider;
 
+    // Audio
+
+    private AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip killSound;
+    public AudioClip deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
         dashEnd = -dashCooldown;
         DialogueSystem.sentencesQueue.Add("WASD to move\n\n\n[SPACE] to skip dialogue");
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -131,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.gameObject.tag == "Antibody")
         {
+            audioSource.PlayOneShot(hitSound);
             Debug.Log("You got hit by an antibody");
             if (!DialogueSystem.antibodiesExplained)
             {
@@ -153,11 +164,13 @@ public class PlayerMovement : MonoBehaviour
         lives--;
         if (lives <= 0)
         {
+            audioSource.PlayOneShot(deathSound);
             Time.timeScale = 0;
             endScreen.SetActive(true);
         }
         else
         {
+            audioSource.PlayOneShot(killSound);
             transform.position = new Vector2(0, 0);
             maxSpeed = 8f;
             acceleration = 50f;

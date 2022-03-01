@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8577780614304828264}
   - component: {fileID: 4346497163686813131}
   - component: {fileID: 5483461971193388655}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Macrophage
   m_TagString: Macrophage
   m_Icon: {fileID: 0}
