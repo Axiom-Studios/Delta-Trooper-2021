@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlayerMovement : MonoBehaviour
@@ -36,11 +37,14 @@ public class PlayerMovement : MonoBehaviour
     CircleCollider2D playerCollider;
 
     // Audio
-
     private AudioSource audioSource;
     public AudioClip hitSound;
     public AudioClip killSound;
     public AudioClip deathSound;
+
+	// Sliders
+	public Slider playerHealthSlider;
+	public Slider dashIndicator;
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +81,17 @@ public class PlayerMovement : MonoBehaviour
 	void Update() {
 		Clamping();
         Dash();
+		DashIndicatorUpdate();
+	}
+
+	void DashIndicatorUpdate() {
+		dashIndicator.value = (Time.time - dashEnd) / dashCooldown;
+		if (dashIndicator.value >= 1) {
+			dashIndicator.gameObject.SetActive(false);
+		}
+		else {
+			dashIndicator.gameObject.SetActive(true);
+		}
 	}
 
 	void Movement()
