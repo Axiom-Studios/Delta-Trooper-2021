@@ -35,13 +35,8 @@ public class BackgroundMusic : MonoBehaviour
     {
         if (level != currentMusic)
         {
-            SetMusic(levelMusic[level]);
+            audioSource.clip = levelMusic[level];
+            audioSource.Play();
         }
-    }
-
-    void SetMusic(AudioClip clip)
-    {
-        audioSource.clip = clip;
-        audioSource.Play();
     }
 }
