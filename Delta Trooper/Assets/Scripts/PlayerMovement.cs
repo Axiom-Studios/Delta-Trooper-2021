@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
     }
     
     public void Dash() {
-        Debug.Log(dashEnd);
+        //Debug.Log(dashEnd);
         if (!dashing && controls.Player.Dash.triggered && Time.time - dashCooldown >= dashEnd) { // START DASH
             dashing = true;
             dashStart = Time.time;
