@@ -12,6 +12,7 @@ public class SpawnController : MonoBehaviour
     public GameObject antibody;
     public GameObject macrophage;
     public GameObject bCell;
+    public GameObject BG;
     public static int level = 0;
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
@@ -100,6 +101,7 @@ public class SpawnController : MonoBehaviour
 
     void ChangeLevel(){
         level += 1;
+        BG.GetComponent<BackgroundController>().ChangeBG(level);
         LoadLevel();
     }
 }
