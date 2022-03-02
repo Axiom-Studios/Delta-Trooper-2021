@@ -246,11 +246,11 @@ MonoBehaviour:
   clampCamera: {fileID: 519420031}
   dashSpeed: 25
   dashTime: 0.25
-  dashCooldown: 5
+  dashCooldown: 2
   hitSound: {fileID: 8300000, guid: 52abed37ae748b049853b54efcaded58, type: 3}
   killSound: {fileID: 8300000, guid: 5b378f6c51dd87f47bbedd399748c48e, type: 3}
   deathSound: {fileID: 8300000, guid: ae9da48b062c9df4bb1c77d4176cae9e, type: 3}
-  playerHealthSlider: {fileID: 0}
+  playerHealthSlider: {fileID: 1801049733}
   dashIndicator: {fileID: 1643971435}
 --- !u!212 &190887971
 SpriteRenderer:
@@ -7347,8 +7347,8 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_MaxValue: 100
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:

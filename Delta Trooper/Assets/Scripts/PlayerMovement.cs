@@ -82,10 +82,11 @@ public class PlayerMovement : MonoBehaviour
 	void Update() {
 		Clamping();
         Dash();
-		DashIndicatorUpdate();
+		IndicatorUpdate();
 	}
 
-	void DashIndicatorUpdate() {
+	void IndicatorUpdate() {
+        // Dash Indicator
 		dashIndicator.value = (Time.time - dashEnd) / dashCooldown;
 		if (dashIndicator.value >= 1) {
 			dashIndicator.gameObject.SetActive(false);
@@ -93,6 +94,9 @@ public class PlayerMovement : MonoBehaviour
 		else {
 			dashIndicator.gameObject.SetActive(true);
 		}
+
+        // Health Bar
+        playerHealthSlider.value = health;
 	}
 
 	void Movement()
