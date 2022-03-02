@@ -14,6 +14,7 @@ public class SpawnController : MonoBehaviour
     public GameObject bCell;
     public GameObject BG;
     public static int level = 0;
+    public int displayLevel = 0;
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
@@ -30,7 +31,7 @@ public class SpawnController : MonoBehaviour
     };
     public List<int> levelLengths = new List<int>
     {
-        10, 10, 10, 10
+        3, 10, 10, 10
     };
     public List<(string, float, float, float)> spawning;
     public float startTime;
@@ -101,6 +102,7 @@ public class SpawnController : MonoBehaviour
 
     void ChangeLevel(){
         level += 1;
+        displayLevel += 1;
         BG.GetComponent<BackgroundController>().ChangeBG(level);
         LoadLevel();
     }

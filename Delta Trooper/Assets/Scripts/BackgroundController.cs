@@ -21,6 +21,9 @@ public class BackgroundController : MonoBehaviour
 
     public void ChangeBG(int level)
     {
-        material.mainTexture = textures[level];
+        material.mainTextureOffset = new Vector2(0, 0);
+        //material.mainTexture = textures[level];
+
+        material.SetTexture("_EmissionMap",textures[level]);
     }
 }

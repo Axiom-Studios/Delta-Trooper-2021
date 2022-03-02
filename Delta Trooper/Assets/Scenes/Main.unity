@@ -959,9 +959,9 @@ MonoBehaviour:
   scrollSpeed: {x: 0.3, y: 0}
   textures:
   - {fileID: 2800000, guid: 43b8ec354bbacdc42a968f25530a2cde, type: 3}
+  - {fileID: 2800000, guid: 80d6954272b848d4b804d5b29112dedd, type: 3}
   - {fileID: 2800000, guid: 7f7ce0aed9a89a84a8a91ebbb515f177, type: 3}
-  - {fileID: 2800000, guid: 43b8ec354bbacdc42a968f25530a2cde, type: 3}
-  - {fileID: 2800000, guid: 43b8ec354bbacdc42a968f25530a2cde, type: 3}
+  - {fileID: 2800000, guid: 7f7ce0aed9a89a84a8a91ebbb515f177, type: 3}
 --- !u!1 &445530571
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,7 +6313,8 @@ MonoBehaviour:
   macrophage: {fileID: 5375533742849913236, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
   bCell: {fileID: 533094754474665446, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
   BG: {fileID: 434936997}
-  levelLengths: 0a0000000a0000000a0000000a000000
+  displayLevel: 0
+  levelLengths: 030000000a0000000a0000000a000000
   startTime: 0
 --- !u!4 &1116672586
 Transform:
