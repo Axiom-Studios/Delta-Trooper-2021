@@ -33,6 +33,7 @@ public class SpawnController : MonoBehaviour
     };
     public List<(string, float, float, float)> spawning;
     public float startTime;
+    public static float levelProgress = 0;
     // Start is called before the first frame update
     void Start(){
         player = GameObject.FindGameObjectWithTag("Player");
@@ -68,7 +69,8 @@ public class SpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(var i in spawnList[LevelManagement.level]){
+        levelProgress = Time.time - startTime / levelLengths[level];
+        foreach(var i in spawnList[level]){
             if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
                 CancelInvoke(i.Item1);
             }
