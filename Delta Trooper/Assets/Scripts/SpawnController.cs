@@ -16,9 +16,11 @@ public class SpawnController : MonoBehaviour
     public GameObject BG;
     public GameObject winScreen;
     public GameObject endScreen;
+    public GameObject transitionScreen;
     public Text winText;
     public static int level = 0;
     public int displayLevel = 0;
+    float timeSinceTransition = 0;
     private string[] names = {
         "Alice", "Bob", "Charlie", "Dave", "Emily", "Frank", "Gannon", "Hank", "Ian", "Jakob", "John", 
         "Kristina", "Larry", "Molly", "Nate", "Oliver", "Pete", "Quincy", "Raio", "Stacy", "Terry", 
@@ -92,6 +94,15 @@ public class SpawnController : MonoBehaviour
                 CancelInvoke(i.Item1);
             }
         }
+
+        if (transitionScreen.activeSelf && Time.unscaledTime - timeSinceTransition > 4)
+        {
+            transitionScreen.SetActive(false);
+            timeSinceTransition = 0;
+            DialogueSystem.menuPaused = false;
+            Debug.Log("haaaaaaaaaaaa");
+
+        }
     }
 
     void SpawnAntibody()
@@ -129,6 +140,11 @@ public class SpawnController : MonoBehaviour
             }
             else
             {
+                transitionScreen.SetActive(true);
+                DialogueSystem.menuPaused = true;
+                Debug.Log("Yaaaaaaaaaaaaaaaaaaaa");
+                timeSinceTransition = Time.unscaledTime;
+
                 BG.GetComponent<BackgroundController>().ChangeBG(level);
                 LoadLevel();
             }

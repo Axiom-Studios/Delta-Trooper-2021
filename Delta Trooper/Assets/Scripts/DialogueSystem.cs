@@ -8,7 +8,7 @@ public class DialogueSystem : MonoBehaviour
 {
     InputMaster controls;
     public bool dialoguePaused = false;
-    public bool menuPaused = false;
+    static public bool menuPaused = false;
     
     public Text dialogueText;
     public GameObject dialogueBox;
