@@ -6,6 +6,7 @@ public class BackgroundController : MonoBehaviour
 {
     Material material;
     public Vector2 scrollSpeed;
+    public Texture[] textures;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +17,13 @@ public class BackgroundController : MonoBehaviour
     void Update()
     {
         material.mainTextureOffset += scrollSpeed * Time.deltaTime;
+    }
+
+    public void ChangeBG(int level)
+    {
+        material.mainTextureOffset = new Vector2(0, 0);
+        //material.mainTexture = textures[level];
+
+        material.SetTexture("_EmissionMap",textures[level]);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SpawnController : MonoBehaviour
@@ -12,8 +13,17 @@ public class SpawnController : MonoBehaviour
     public GameObject antibody;
     public GameObject macrophage;
     public GameObject bCell;
+    public GameObject BG;
+    public GameObject winScreen;
+    public GameObject endScreen;
+    public Text winText;
     public static int level = 0;
-
+    public int displayLevel = 0;
+    private string[] names = {
+        "Alice", "Bob", "Charlie", "Dave", "Emily", "Frank", "Gannon", "Hank", "Ian", "Jakob", "John", 
+        "Kristina", "Larry", "Molly", "Nate", "Oliver", "Pete", "Quincy", "Raio", "Stacy", "Terry", 
+        "Ulysses", "Vincent", "Waldo", "Xander", "Yale", "Zack"
+    };
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
@@ -26,17 +36,21 @@ public class SpawnController : MonoBehaviour
             ("SpawnBCell", 1f, -1f, 5f),
             ("SpawnAntibody", 6f, 10f, 0.5f),
             ("SpawnMacrophage", 11f, -1f, -1f)
+        },
+        new List<(string, float, float, float)>{
+            ("SpawnMacrophage", 0f, -1f, 2f)
         }
     };
     public List<int> levelLengths = new List<int>
     {
-        10, 10, 10, 10
+        10, 10, 10
     };
     public List<(string, float, float, float)> spawning;
     public float startTime;
     // Start is called before the first frame update
     void Start(){
         level = 0;
+        winText = winScreen.GetComponentInChildren<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
         LoadLevel();
     }
@@ -104,7 +118,23 @@ public class SpawnController : MonoBehaviour
     }
 
     void ChangeLevel(){
-        level++;
         LoadLevel();
+        level += 1;
+        displayLevel += 1;
+        if (level == 3)
+        {
+            Win();
+        }
+        else
+        {
+            BG.GetComponent<BackgroundController>().ChangeBG(level);
+            LoadLevel();
+        }
+    }
+    public void Win(){
+        Debug.Log("You won congrats ig");
+        winScreen.SetActive(true);
+        winText.text = "You Infected " + names[Mathf.RoundToInt(Random.Range(0,names.Length))] + "! \n\nCongratulations!";
+        Time.timeScale = 0;
     }
 }
