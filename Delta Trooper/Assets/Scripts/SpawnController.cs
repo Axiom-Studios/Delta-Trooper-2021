@@ -49,6 +49,7 @@ public class SpawnController : MonoBehaviour
     public float startTime;
     // Start is called before the first frame update
     void Start(){
+        level = 0;
         winText = winScreen.GetComponentInChildren<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
         LoadLevel();
@@ -61,6 +62,9 @@ public class SpawnController : MonoBehaviour
             Destroy(i);
         }
         foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
+            Destroy(i);
+        }
+        foreach(var i in GameObject.FindGameObjectsWithTag("B-Cell")){
             Destroy(i);
         }
         player.transform.position = new Vector2 (0, 0);
@@ -114,6 +118,7 @@ public class SpawnController : MonoBehaviour
     }
 
     void ChangeLevel(){
+        LoadLevel();
         level += 1;
         displayLevel += 1;
         if (level == 3)
