@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SpawnController : MonoBehaviour
@@ -14,6 +15,7 @@ public class SpawnController : MonoBehaviour
     public GameObject spawnedMacrophage;
     public GameObject bCell;
     public static int level = 0;
+    public Slider levelProgressBar;
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
@@ -71,6 +73,7 @@ public class SpawnController : MonoBehaviour
     void Update()
     {
         levelProgress = Time.time - startTime / levelLengths[level];
+        levelProgressBar.value = levelProgress;
         foreach(var i in spawnList[level]){
             if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
                 CancelInvoke(i.Item1);

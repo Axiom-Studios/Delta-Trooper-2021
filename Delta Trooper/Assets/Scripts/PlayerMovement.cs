@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
 	}
     
     void Immunity() {
-        if (Time.time - immunityStart >= immunityTime) {
+        if (Time.time - immunityStart >= immunityTime && !dashing) {
             playerCollider.enabled = true;
         }
         else {
