@@ -5,7 +5,7 @@ using UnityEngine;
 public class MacrophageBehavior : MonoBehaviour
 {
     public GameObject player;
-    public bool chasing = false;
+    public bool chasing = true;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private float speed = 6;
@@ -22,15 +22,25 @@ public class MacrophageBehavior : MonoBehaviour
     void Update()
     {
         // Go to player
-        Vector2 direction = (Vector2)player.transform.position - rb.position;
-        direction = direction.normalized;
-        Vector2 velocity = direction * speed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + velocity);
-        if (transform.position.x - player.transform.position.x > 0){
-            sr.flipX = true;
+        if (chasing){
+            Vector2 direction = (Vector2)player.transform.position - rb.position;
+            direction = direction.normalized;
+            Vector2 velocity = direction * speed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + velocity);
+            if (transform.position.x - player.transform.position.x > 0){
+                sr.flipX = true;
+            }
+            else{
+                sr.flipX = false;
+            }
         }
         else{
-            sr.flipX = false;
+            sr.flipX = true;
+            rb.MovePosition(rb.position + (Vector2.left * speed * Time.fixedDeltaTime));
+            if (Vector2.Distance(player.transform.position, transform.position) > 40)
+            {
+                Destroy(gameObject);
+            }
         }
         //transform.position += new Vector3 (velocity.x, velocity.y, 0);
         //transform.LookAt(player.transform.position);

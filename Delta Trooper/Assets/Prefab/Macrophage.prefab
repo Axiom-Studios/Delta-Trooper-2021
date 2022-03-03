@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  chasing: 0
+  chasing: 1
 --- !u!50 &-8577780614304828264
 Rigidbody2D:
   serializedVersion: 4
