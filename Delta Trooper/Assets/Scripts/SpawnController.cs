@@ -118,17 +118,20 @@ public class SpawnController : MonoBehaviour
     }
 
     void ChangeLevel(){
-        LoadLevel();
-        level += 1;
-        displayLevel += 1;
-        if (level == 3)
+        if (PlayerMovement.lives > 0)
         {
-            Win();
-        }
-        else
-        {
-            BG.GetComponent<BackgroundController>().ChangeBG(level);
             LoadLevel();
+            level += 1;
+            displayLevel += 1;
+            if (level == 3)
+            {
+                Win();
+            }
+            else
+            {
+                BG.GetComponent<BackgroundController>().ChangeBG(level);
+                LoadLevel();
+            }
         }
     }
     public void Win(){

@@ -7,6 +7,7 @@ TagManager:
   - Macrophage
   - Antibody
   - Cell
+  - B-Cell
   layers:
   - Default
   - TransparentFX

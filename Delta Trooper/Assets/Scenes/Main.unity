@@ -241,7 +241,6 @@ MonoBehaviour:
   dialogueSystem: {fileID: 0}
   maxSpeed: 8
   acceleration: 50
-  lives: 5
   infectTime: 5
   clampCamera: {fileID: 519420031}
   dashSpeed: 25
@@ -6404,12 +6403,10 @@ MonoBehaviour:
   macrophage: {fileID: 5375533742849913236, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
   bCell: {fileID: 533094754474665446, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
   BG: {fileID: 434936997}
-  winScreen: {fileID: 0}
+  winScreen: {fileID: 480866308}
+  endScreen: {fileID: 1287615259}
   winText: {fileID: 0}
   displayLevel: 0
-  names:
-  - hi
-  - hello
   levelLengths: 030000000a0000000a0000000a000000
   startTime: 0
 --- !u!4 &1116672586
