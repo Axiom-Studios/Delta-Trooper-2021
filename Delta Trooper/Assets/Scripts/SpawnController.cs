@@ -72,7 +72,7 @@ public class SpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        levelProgress = Time.time - startTime / levelLengths[level];
+        levelProgress = (Time.time - startTime) / levelLengths[level];
         levelProgressBar.value = levelProgress;
         foreach(var i in spawnList[level]){
             if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
