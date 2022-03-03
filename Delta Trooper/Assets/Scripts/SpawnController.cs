@@ -21,16 +21,21 @@ public class SpawnController : MonoBehaviour
     public int displayLevel = 0;
     private string[] names = {
         "Alice", "Bob", "Charlie", "Dave", "Emily", "Frank", "Gannon", "Hank", "Ian", "Jakob", "John", 
-        "Kristina", "Larry", "Molly", "Nate", "Oliver", "Pete", "Quincy", "Raio", "Stacy", "Terry", 
+        "Kristina", "Larry", "Maddie", "Nate", "Oliver", "Pete", "Quincy", "Raio", "Stacy", "Terry", 
         "Ulysses", "Vincent", "Waldo", "Xander", "Yale", "Zack"
     };
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
         new List<(string, float, float, float)>{
-            ("SpawnAntibody", 1f, 5f, 0.5f),
-            ("SpawnMacrophage", 5f, -1f, -1f),
-            ("SpawnBCell", 30f, -1f, 20f)
+            ("SpawnAntibody", 5f, 15f, 1f),
+            ("SpawnAntibody", 15f, 25f, 0.5f),
+            ("SpawnMacrophage", 25f, 25f, -1f),
+            ("SpawnAntibody", 40f, 60f, 0.5f),
+            ("DespawnMacrophages", 60f, 60f, -1f),
+            ("SpawnBCell", 65f, -1f, 5f),
+            ("SpawnAntibody", 80f, -1f, 0.5f),
+            ("SpawnMacrophage", 100f, 101f, 10f)
         },
         new List<(string, float, float, float)>{
             ("SpawnBCell", 1f, -1f, 5f),
@@ -43,7 +48,7 @@ public class SpawnController : MonoBehaviour
     };
     public List<int> levelLengths = new List<int>
     {
-        10, 10, 10
+        120, 120, 120
     };
     public List<(string, float, float, float)> spawning;
     public float startTime;
@@ -70,7 +75,7 @@ public class SpawnController : MonoBehaviour
         player.transform.position = new Vector2 (0, 0);
         startTime = Time.time;
         spawning = spawnList[level];
-        
+        /*
         foreach(var i in spawnList[level]){
             if (i.Item4 == -1)
             {
@@ -80,7 +85,7 @@ public class SpawnController : MonoBehaviour
             {
                 InvokeRepeating(i.Item1, i.Item2, i.Item4);
             }
-        }
+        }*/
         Invoke("ChangeLevel", levelLengths[level]);
     }
 
@@ -88,7 +93,17 @@ public class SpawnController : MonoBehaviour
     void Update()
     {
         foreach(var i in spawnList[LevelManagement.level]){
-            if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
+            if ((Time.time - startTime) - i.Item2 > 0 && (Time.time - startTime) - i.Item2 < Time.deltaTime){
+                if (i.Item4 == -1)
+                {
+                    Invoke(i.Item1, 0);
+                }
+                else
+                {
+                    InvokeRepeating(i.Item1, 0, i.Item4);
+                }
+            }
+            else if ((Time.time - startTime) - i.Item3 > 0 && (Time.time - startTime) - i.Item3 < Time.deltaTime){
                 CancelInvoke(i.Item1);
             }
         }
@@ -132,6 +147,11 @@ public class SpawnController : MonoBehaviour
                 BG.GetComponent<BackgroundController>().ChangeBG(level);
                 LoadLevel();
             }
+        }
+    }
+    public void DespawnMacrophages(){
+        foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
+            i.GetComponent<MacrophageBehavior>().chasing = false;
         }
     }
     public void Win(){
