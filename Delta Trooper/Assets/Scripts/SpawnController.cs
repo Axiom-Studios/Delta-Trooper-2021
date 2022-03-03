@@ -12,12 +12,14 @@ public class SpawnController : MonoBehaviour
     public GameObject player;
     public GameObject antibody;
     public GameObject macrophage;
+    public GameObject spawnedMacrophage;
     public GameObject bCell;
     public GameObject BG;
     public GameObject winScreen;
     public GameObject endScreen;
     public Text winText;
     public static int level = 0;
+    public Slider levelProgressBar;
     public int displayLevel = 0;
     private string[] names = {
         "Alice", "Bob", "Charlie", "Dave", "Emily", "Frank", "Gannon", "Hank", "Ian", "Jakob", "John", 
@@ -52,6 +54,7 @@ public class SpawnController : MonoBehaviour
     };
     public List<(string, float, float, float)> spawning;
     public float startTime;
+    public static float levelProgress = 0;
     // Start is called before the first frame update
     void Start(){
         level = 0;
@@ -92,6 +95,8 @@ public class SpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        levelProgress = (Time.time - startTime) / levelLengths[level];
+        levelProgressBar.value = levelProgress;
         foreach(var i in spawnList[LevelManagement.level]){
             if ((Time.time - startTime) - i.Item2 > 0 && (Time.time - startTime) - i.Item2 < Time.deltaTime){
                 if (i.Item4 == -1)
@@ -117,12 +122,12 @@ public class SpawnController : MonoBehaviour
         Instantiate(antibody, spawnPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = new Vector2 (-1,0);
     }
 
-    void SpawnMacrophage()
+    public void SpawnMacrophage()
     {
         Vector3 spawnPos = transform.position;
         spawnPos.x = transform.position.x - 21;
         spawnPos.y = Random.Range(minY, maxY);
-        Instantiate(macrophage, spawnPos, transform.rotation);
+        spawnedMacrophage = Instantiate(macrophage, spawnPos, transform.rotation);
     }
     void SpawnBCell()
     {

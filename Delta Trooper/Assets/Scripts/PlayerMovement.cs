@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject dialogueSystem;
     public float maxSpeed = 8f;
     public float acceleration = 50f;
+    public int lives = 5;
+    public static int health = 100;
     public static int lives = 5;
     float currentSpeed;
     float cellTime = 0;
@@ -36,13 +39,20 @@ public class PlayerMovement : MonoBehaviour
     CircleCollider2D playerCollider;
 
     // Audio
-
     private AudioSource audioSource;
     public AudioClip hitSound;
     public AudioClip killSound;
     public AudioClip deathSound;
 
-    // Start is called before the first frame update
+	// Sliders
+	public Slider playerHealthSlider;
+	public Slider dashIndicator;
+
+    // Death Immunity
+    public float immunityTime;
+    float immunityStart;
+    public SpawnController spawnController;
+
     void Start()
     {
         lives = 5;
@@ -79,6 +89,30 @@ public class PlayerMovement : MonoBehaviour
 	void Update() {
 		Clamping();
         Dash();
+		IndicatorUpdate();
+        Immunity();
+	}
+    
+    void Immunity() {
+        if (Time.time - immunityStart >= immunityTime && !dashing) {
+            playerCollider.enabled = true;
+        }
+        else {
+            playerCollider.enabled = false;
+        }
+    }
+	void IndicatorUpdate() {
+        // Dash Indicator
+		dashIndicator.value = (Time.time - dashEnd) / dashCooldown;
+		if (dashIndicator.value >= 1) {
+			dashIndicator.gameObject.SetActive(false);
+		}
+		else {
+			dashIndicator.gameObject.SetActive(true);
+		}
+
+        // Health Bar
+        playerHealthSlider.value = health;
 	}
 
 	void Movement()
@@ -157,9 +191,10 @@ public class PlayerMovement : MonoBehaviour
                 DialogueSystem.antibodiesExplained = true;
             }
             maxSpeed -= 1f;
+            health -= 100/8;
             acceleration /= 1.3f;
             Destroy(other.gameObject);
-            if (maxSpeed <= 1)
+            if (maxSpeed < 1)
             {
                 Kill();
             }
@@ -183,9 +218,13 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(0, 0);
             maxSpeed = 8f;
             acceleration = 50f;
+            health = 100;
             sr.color = Color.white;
         }
-        
+        immunityStart = Time.time;
+        //respawn macrophage
+        Destroy(spawnController.spawnedMacrophage);
+        spawnController.SpawnMacrophage();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
