@@ -15,11 +15,14 @@ public class SpawnController : MonoBehaviour
     public GameObject bCell;
     public GameObject BG;
     public GameObject winScreen;
+    public GameObject endScreen;
     public Text winText;
     public static int level = 0;
     public int displayLevel = 0;
-    public string[] names = {
-        "hi", "hello"
+    private string[] names = {
+        "Alice", "Bob", "Charlie", "Dave", "Emily", "Frank", "Gannon", "Hank", "Ian", "Jakob", "John", 
+        "Kristina", "Larry", "Molly", "Nate", "Oliver", "Pete", "Quincy", "Raio", "Stacy", "Terry", 
+        "Ulysses", "Vincent", "Waldo", "Xander", "Yale", "Zack"
     };
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
@@ -126,5 +129,7 @@ public class SpawnController : MonoBehaviour
     public void Win(){
         Debug.Log("You won congrats ig");
         winScreen.SetActive(true);
+        winText.text = "You Infected " + names[Mathf.RoundToInt(Random.Range(0,names.Length))] + "! \n\nCongratulations!";
+        Time.timeScale = 0;
     }
 }
