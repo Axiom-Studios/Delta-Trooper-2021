@@ -47,7 +47,11 @@ public class PlayerMovement : MonoBehaviour
 	public Slider playerHealthSlider;
 	public Slider dashIndicator;
 
-    // Start is called before the first frame update
+    // Death Immunity
+    public float immunityTime;
+    float immunityStart;
+    public SpawnController spawnController;
+
     void Start()
     {
         t1 = Time.time;
@@ -83,8 +87,17 @@ public class PlayerMovement : MonoBehaviour
 		Clamping();
         Dash();
 		IndicatorUpdate();
+        Immunity();
 	}
-
+    
+    void Immunity() {
+        if (Time.time - immunityStart >= immunityTime) {
+            playerCollider.enabled = true;
+        }
+        else {
+            playerCollider.enabled = false;
+        }
+    }
 	void IndicatorUpdate() {
         // Dash Indicator
 		dashIndicator.value = (Time.time - dashEnd) / dashCooldown;
@@ -205,7 +218,10 @@ public class PlayerMovement : MonoBehaviour
             health = 100;
             sr.color = Color.white;
         }
-        
+        immunityStart = Time.time;
+        //respawn macrophage
+        Destroy(spawnController.spawnedMacrophage);
+        spawnController.SpawnMacrophage();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

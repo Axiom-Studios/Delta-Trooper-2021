@@ -252,6 +252,8 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: ae9da48b062c9df4bb1c77d4176cae9e, type: 3}
   playerHealthSlider: {fileID: 1801049733}
   dashIndicator: {fileID: 1643971435}
+  immunityTime: 5
+  spawnController: {fileID: 1116672585}
 --- !u!212 &190887971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6459,6 +6461,7 @@ MonoBehaviour:
   player: {fileID: 190887969}
   antibody: {fileID: 5770667286974816222, guid: d6fb2f09b3245d14db1ad50953a57c37, type: 3}
   macrophage: {fileID: 5375533742849913236, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
+  spawnedMacrophage: {fileID: 0}
   bCell: {fileID: 533094754474665446, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
   levelLengths: 0a0000000a0000000a0000000a000000
   startTime: 0
@@ -7062,7 +7065,6 @@ MonoBehaviour:
   tracking: {fileID: 190887972}
   cam: {fileID: 519420031}
   offset: {x: 0, y: 50}
-  textures: []
 --- !u!114 &1643971435
 MonoBehaviour:
   m_ObjectHideFlags: 0
