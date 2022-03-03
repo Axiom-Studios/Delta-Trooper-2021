@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration = 50f;
     public int lives = 5;
     public static int health = 100;
+    public static int lives = 5;
     float currentSpeed;
     float cellTime = 0;
     public float infectTime = 5f;
@@ -54,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        lives = 5;
+        
         t1 = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
         sr = this.GetComponent<SpriteRenderer>();

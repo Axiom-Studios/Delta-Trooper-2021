@@ -6,26 +6,20 @@ public class BackgroundMusic : MonoBehaviour
 {
     private AudioSource audioSource;
 
-    public AudioClip level0;
-    public AudioClip level1;
-    public AudioClip level2;
-    public AudioClip level3;
-    List<AudioClip> levelMusic = new List<AudioClip>();
+    [SerializeField]
+    List<AudioClip> levelMusic;
 
-
-    int level = SpawnController.level;
-    int currentMusic = 0;
+    int level;
+    int currentMusic;
 
 
     void Start()
     {
-        levelMusic.Add(level0);
-        levelMusic.Add(level1);
-        levelMusic.Add(level2);
-        levelMusic.Add(level3);
+        level = SpawnController.level;
+        currentMusic = 0;
 
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = level0;
+        audioSource.clip = levelMusic[0];
         audioSource.loop = true;
         audioSource.Play();
     }
@@ -33,10 +27,13 @@ public class BackgroundMusic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (level != currentMusic)
+        level = SpawnController.level;
+        if (level != currentMusic && PlayerMovement.lives > 0)
         {
             audioSource.clip = levelMusic[level];
             audioSource.Play();
+            currentMusic = level;
+            Debug.Log("Now playing: " + currentMusic + "\nLevel: " + level);
         }
     }
 }
