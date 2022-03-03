@@ -35,6 +35,7 @@ public class SpawnController : MonoBehaviour
     public float startTime;
     // Start is called before the first frame update
     void Start(){
+        level = 0;
         player = GameObject.FindGameObjectWithTag("Player");
         LoadLevel();
     }

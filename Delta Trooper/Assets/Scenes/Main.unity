@@ -1356,10 +1356,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1ecc3fbdad2be478cf336e30443507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level0: {fileID: 8300000, guid: ccbbe5208708d1b428dc221495e69c84, type: 3}
-  level1: {fileID: 8300000, guid: 76fc03c0b966b0144802e281528b4001, type: 3}
-  level2: {fileID: 8300000, guid: 5f4bd563ea9f1a745b36006f6fb203d2, type: 3}
-  level3: {fileID: 8300000, guid: 5bb3424071925d643ad8a827e7816a67, type: 3}
+  levelMusic:
+  - {fileID: 8300000, guid: 76fc03c0b966b0144802e281528b4001, type: 3}
+  - {fileID: 8300000, guid: ccbbe5208708d1b428dc221495e69c84, type: 3}
+  - {fileID: 8300000, guid: 5f4bd563ea9f1a745b36006f6fb203d2, type: 3}
+  - {fileID: 8300000, guid: 5bb3424071925d643ad8a827e7816a67, type: 3}
 --- !u!82 &588822868
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1468,7 +1469,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &719125832
 GameObject:
