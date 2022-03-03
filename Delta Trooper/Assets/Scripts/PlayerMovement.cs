@@ -175,10 +175,10 @@ public class PlayerMovement : MonoBehaviour
                 DialogueSystem.antibodiesExplained = true;
             }
             maxSpeed -= 1f;
-            health -= 15;
+            health -= 100/8;
             acceleration /= 1.3f;
             Destroy(other.gameObject);
-            if (maxSpeed <= 1)
+            if (maxSpeed < 1)
             {
                 Kill();
             }
@@ -202,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(0, 0);
             maxSpeed = 8f;
             acceleration = 50f;
+            health = 100;
             sr.color = Color.white;
         }
         
