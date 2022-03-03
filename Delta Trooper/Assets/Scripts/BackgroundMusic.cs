@@ -28,7 +28,7 @@ public class BackgroundMusic : MonoBehaviour
     void Update()
     {
         level = SpawnController.level;
-        if (level != currentMusic)
+        if (level != currentMusic && PlayerMovement.lives > 0)
         {
             audioSource.clip = levelMusic[level];
             audioSource.Play();

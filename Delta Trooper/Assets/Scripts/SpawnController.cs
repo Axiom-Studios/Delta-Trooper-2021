@@ -13,6 +13,7 @@ public class SpawnController : MonoBehaviour
     public GameObject macrophage;
     public GameObject bCell;
     public static int level = 0;
+
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
@@ -47,6 +48,9 @@ public class SpawnController : MonoBehaviour
             Destroy(i);
         }
         foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
+            Destroy(i);
+        }
+        foreach(var i in GameObject.FindGameObjectsWithTag("B-Cell")){
             Destroy(i);
         }
         player.transform.position = new Vector2 (0, 0);
@@ -100,7 +104,7 @@ public class SpawnController : MonoBehaviour
     }
 
     void ChangeLevel(){
-        level += 1;
+        level++;
         LoadLevel();
     }
 }
