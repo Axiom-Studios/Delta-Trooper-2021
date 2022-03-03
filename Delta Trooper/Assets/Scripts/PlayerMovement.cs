@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public GameObject dialogueSystem;
     public float maxSpeed = 8f;
     public float acceleration = 50f;
-    public int lives = 5;
     public static int health = 100;
     public static int lives = 5;
     float currentSpeed;
