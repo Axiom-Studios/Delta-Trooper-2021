@@ -54,11 +54,13 @@ public class PlayerMovement : MonoBehaviour
     public SpawnController spawnController;
     float lastChange = 0;
     public float blinkSpeed;
+    bool immune = false;
 
     void Start()
     {
         lives = 5;
         health = 100;
+        immune = false;
         
         t1 = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
@@ -137,17 +139,19 @@ public class PlayerMovement : MonoBehaviour
 	}
 
     void Blink() {
-        if (!playerCollider.enabled && Time.time - lastChange >= blinkSpeed && !dashing) {
+        if (immune && (Time.time - lastChange) >= blinkSpeed && !dashing) {
             spriteRenderer.enabled = !spriteRenderer.enabled;
             lastChange = Time.time;
         }
     }
     
     void Immunity() {
-        if (Time.time - immunityStart >= immunityTime && !dashing) {
+        if (immune && (Time.time - immunityStart) >= immunityTime && !dashing) {
             playerCollider.enabled = true;
+            immune = false;
+            spriteRenderer.enabled = true;
         }
-        else {
+        else if (immune) {
             playerCollider.enabled = false;
         }
     }
@@ -260,8 +264,9 @@ public class PlayerMovement : MonoBehaviour
             acceleration = 50f;
             health = 100;
             spriteRenderer.color = Color.white;
+            immune = true;
+            immunityStart = Time.time;
         }
-        immunityStart = Time.time;
         //respawn macrophage
         foreach (var i in GameObject.FindGameObjectsWithTag("Macrophage")){
             Destroy(i);

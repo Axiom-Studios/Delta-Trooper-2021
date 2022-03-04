@@ -72,7 +72,7 @@ public class SpawnController : MonoBehaviour
 
     void LoadLevel()
     {
-        Debug.Log("Loading Level");
+        Debug.Log("Loading Level: " + level);
         foreach(var i in GameObject.FindGameObjectsWithTag("Antibody")){
             Destroy(i);
         }
