@@ -189,11 +189,11 @@ public class PlayerMovement : MonoBehaviour
                 DialogueSystem.sentencesQueue.Add("Too many will slow you down and eventually kill you!");
                 DialogueSystem.antibodiesExplained = true;
             }
-            maxSpeed -= 1f;
+            //maxSpeed -= 1f;
             health -= 100/8;
-            acceleration /= 1.3f;
+            //acceleration /= 1.3f;
             Destroy(other.gameObject);
-            if (maxSpeed < 1)
+            if (health <= 1)
             {
                 Kill();
             }
