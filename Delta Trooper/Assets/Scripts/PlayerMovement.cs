@@ -102,9 +102,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Time.time - t1 > 5 && !DialogueSystem.dashExplained)
         {
-            DialogueSystem.sentencesQueue.Add("Press [LEFT SHIFT] to dash");
-            DialogueSystem.sentencesQueue.Add("Dash gives a temporary speed boost");
-            DialogueSystem.sentencesQueue.Add("It also allows you to pass though dangerous stuff");
+            DialogueSystem.sentencesQueue.Add("Press [LEFT SHIFT] to dash.");
+            DialogueSystem.sentencesQueue.Add("Dash gives a speed boost.");
+            DialogueSystem.sentencesQueue.Add("It also allows you to pass though dangerous stuff.");
             DialogueSystem.dashExplained = true;
         }
 
