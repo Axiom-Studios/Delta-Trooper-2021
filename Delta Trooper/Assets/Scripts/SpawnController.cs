@@ -45,13 +45,13 @@ public class SpawnController : MonoBehaviour
         new List<(string, float, float, float)>{
             //B cells (IT GETS WORSE)
             ("SpawnBCell", 1f, 40f, 5f),
-            ("SpawnBCell", 40f, 80f, 3f),
-            ("SpawnBCell", 80f, 120f, 2f),
+            ("SpawnBCell", 40f, 80f, 4f),
+            ("SpawnBCell", 80f, 120f, 3f),
             //constant antibody spawning
-            ("SpawnAntibody", 1f, -1f, 1f)
+            //("SpawnAntibody", 1f, -1f, 1f)
         },
         new List<(string, float, float, float)>{
-            ("SpawnMacrophage", 0f, -1f, 2f)
+            //("SpawnMacrophage", 0f, -1f, 2f)
         }
     };
     public List<int> levelLengths = new List<int>
