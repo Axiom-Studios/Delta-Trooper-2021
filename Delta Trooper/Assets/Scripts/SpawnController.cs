@@ -39,7 +39,7 @@ public class SpawnController : MonoBehaviour
             ("SpawnMacrophage", 25f, 25f, -1f),
             ("SpawnAntibody", 40f, 60f, 0.5f),
             ("DespawnMacrophages", 60f, 60f, -1f),
-            ("SpawnBCell", 65f, -1f, 5f),
+            ("SpawnBCell", 65f, -1f, 10f),
             ("SpawnAntibody", 80f, -1f, 0.5f),
             ("SpawnMacrophage", 100f, 101f, 10f)
         },
@@ -177,7 +177,7 @@ public class SpawnController : MonoBehaviour
                 DialogueSystem.menuPaused = true;
                 Debug.Log("Yaaaaaaaaaaaaaaaaaaaa");
                 timeSinceTransition = Time.unscaledTime;
-
+                PlayerMovement.lives = 5;
                 BG.GetComponent<BackgroundController>().ChangeBG(level);
                 LoadLevel();
             }
