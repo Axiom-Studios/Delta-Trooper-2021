@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         lives = 5;
+        health = 100;
         
         t1 = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
