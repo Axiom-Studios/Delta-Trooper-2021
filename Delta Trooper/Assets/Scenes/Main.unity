@@ -931,7 +931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguePaused: 0
-  menuPaused: 0
   dialogueText: {fileID: 34529146}
   dialogueBox: {fileID: 1476418391}
   pauseMenu: {fileID: 1651314626}
@@ -6691,6 +6690,7 @@ MonoBehaviour:
   macrophagePrefab: {fileID: 5375533742849913236, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
   spawnedMacrophage: {fileID: 0}
   bCellPrefab: {fileID: 533094754474665446, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
+  wallPrefab: {fileID: 4619169428746721796, guid: 007ccef0bc40d224d9b46ecc4f09e818, type: 3}
   BG: {fileID: 434936997}
   winScreen: {fileID: 480866308}
   endScreen: {fileID: 1287615259}
@@ -7927,7 +7927,7 @@ RectTransform:
   m_Children:
   - {fileID: 119567671}
   m_Father: {fileID: 296457670}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

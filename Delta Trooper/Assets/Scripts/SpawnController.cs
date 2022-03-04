@@ -14,6 +14,7 @@ public class SpawnController : MonoBehaviour
     public GameObject macrophagePrefab;
     public GameObject spawnedMacrophage;
     public GameObject bCellPrefab;
+    public GameObject wallPrefab;
     public GameObject BG;
     public GameObject winScreen;
     public GameObject endScreen;
@@ -51,7 +52,7 @@ public class SpawnController : MonoBehaviour
             //("SpawnAntibody", 1f, -1f, 1f)
         },*/
         new List<(string, float, float, float)>{
-            //("SpawnMacrophage", 0f, -1f, 2f)
+            ("SpawnWall", 1f, -1f, 5f)
         }
     };
     public List<int> levelLengths = new List<int>
@@ -130,6 +131,11 @@ public class SpawnController : MonoBehaviour
             Debug.Log("haaaaaaaaaaaa");
 
         }
+    }
+
+    void SpawnWall() {
+        Instantiate(wallPrefab, transform.position + (Vector3.right * 21), transform.rotation);
+        Debug.Log("beep boop I am a wall");
     }
 
     void SpawnAntibody()
