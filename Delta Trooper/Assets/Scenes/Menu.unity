@@ -1048,8 +1048,12 @@ MonoBehaviour:
     D - Right
 
 
-    Mission:
-    Survive long enough to infect a cell'
+    Dash:
+    LEFT SHIFT
+
+    Pause: E
+
+    Skip dialogue: SPACE'
 --- !u!222 &1615176985
 CanvasRenderer:
   m_ObjectHideFlags: 0
