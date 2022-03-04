@@ -222,8 +222,10 @@ public class PlayerMovement : MonoBehaviour
         }
         immunityStart = Time.time;
         //respawn macrophage
-        Destroy(spawnController.spawnedMacrophage);
-        spawnController.SpawnMacrophage();
+        foreach (var i in GameObject.FindGameObjectsWithTag("Macrophage")){
+            Destroy(i);
+            spawnController.SpawnMacrophage();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
