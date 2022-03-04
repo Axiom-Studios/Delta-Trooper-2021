@@ -25,7 +25,6 @@ public class DialogueSystem : MonoBehaviour
         controls = new InputMaster();
 		controls.Enable();
 
-        dialogueText = GetComponentInChildren<Text>();
         dialogueText.text = "[Text component loaded]";
     }
 
