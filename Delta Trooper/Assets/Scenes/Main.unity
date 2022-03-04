@@ -336,6 +336,7 @@ MonoBehaviour:
   dashIndicator: {fileID: 1597442639}
   immunityTime: 5
   spawnController: {fileID: 1116672585}
+  blinkSpeed: 0.2
 --- !u!212 &190887971
 SpriteRenderer:
   m_ObjectHideFlags: 0

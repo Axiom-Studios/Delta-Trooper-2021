@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 	InputMaster controls;
     private Rigidbody2D rb;
-    private SpriteRenderer sr;
+    private SpriteRenderer spriteRenderer;
     public GameObject endScreen;
     public GameObject dialogueSystem;
     public float maxSpeed = 8f;
@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
     public float immunityTime;
     float immunityStart;
     public SpawnController spawnController;
+    float lastChange = 0;
+    public float blinkSpeed;
 
     void Start()
     {
@@ -60,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         
         t1 = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
-        sr = this.GetComponent<SpriteRenderer>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
         playerCollider = gameObject.GetComponent<CircleCollider2D>();
         //input setup
 		controls = new InputMaster();
@@ -93,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
 		IndicatorUpdate();
         Immunity();
         CheckDialogue();
+        Blink();
 	}
 
     void CheckDialogue()
@@ -130,6 +133,13 @@ public class PlayerMovement : MonoBehaviour
             DialogueSystem.sentencesQueue.Add("When in range, they shoot!");
             DialogueSystem.sentencesQueue.Add("Stay far away!");
             DialogueSystem.helperbExplained = true;
+        }
+	}
+
+    void Blink() {
+        if (!playerCollider.enabled && Time.time - lastChange >= blinkSpeed && !dashing) {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            lastChange = Time.time;
         }
     }
     
@@ -178,12 +188,13 @@ public class PlayerMovement : MonoBehaviour
             dashStart = Time.time;
             dashDirection = controls.Player.Movement.ReadValue<Vector2>();
             playerCollider.enabled = false;
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, .5f);
         }
         if (dashing && Time.time - dashStart >= dashTime) { // STOP DASH
             dashing = false;
             playerCollider.enabled = true;
             dashEnd = Time.time;
-
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
         }
         if (dashing) { // DASH MOVEMENT
             transform.position += (Vector3) (dashDirection * dashSpeed * Time.deltaTime);
@@ -248,7 +259,7 @@ public class PlayerMovement : MonoBehaviour
             maxSpeed = 8f;
             acceleration = 50f;
             health = 100;
-            sr.color = Color.white;
+            spriteRenderer.color = Color.white;
         }
         immunityStart = Time.time;
         //respawn macrophage
@@ -271,12 +282,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Keyboard.current.spaceKey.IsPressed())
             {
-                sr.color = Color.black;
+                spriteRenderer.color = Color.black;
                 cellTime += Time.deltaTime;
             }
             else
             {
-                sr.color = Color.white;
+                spriteRenderer.color = Color.white;
                 cellTime = 0;
             }
 
@@ -292,7 +303,7 @@ public class PlayerMovement : MonoBehaviour
     public void Win()
     {
         Debug.Log("You won");
-        sr.color = Color.magenta;
+        spriteRenderer.color = Color.magenta;
         cellTime = 0;
     }
 }
