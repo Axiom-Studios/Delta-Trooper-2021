@@ -931,7 +931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguePaused: 0
-  menuPaused: 0
   dialogueText: {fileID: 34529146}
   dialogueBox: {fileID: 1476418391}
   pauseMenu: {fileID: 1651314626}
@@ -7927,7 +7926,7 @@ RectTransform:
   m_Children:
   - {fileID: 119567671}
   m_Father: {fileID: 296457670}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
