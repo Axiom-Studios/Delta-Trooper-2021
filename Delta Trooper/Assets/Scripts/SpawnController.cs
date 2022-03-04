@@ -33,7 +33,7 @@ public class SpawnController : MonoBehaviour
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
-        /*new List<(string, float, float, float)>{
+        new List<(string, float, float, float)>{
             ("SpawnAntibody", 5f, 15f, 1f),
             ("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),
@@ -42,15 +42,15 @@ public class SpawnController : MonoBehaviour
             ("SpawnBCell", 65f, -1f, 5f),
             ("SpawnAntibody", 80f, -1f, 0.5f),
             ("SpawnMacrophage", 100f, 101f, 10f)
-        },*/
-        /*new List<(string, float, float, float)>{
+        },
+        new List<(string, float, float, float)>{
             //B cells (IT GETS WORSE)
             ("SpawnBCell", 1f, 40f, 5f),
             ("SpawnBCell", 40f, 80f, 4f),
             ("SpawnBCell", 80f, 120f, 3f),
             //constant antibody spawning
             //("SpawnAntibody", 1f, -1f, 1f)
-        },*/
+        },
         new List<(string, float, float, float)>{
             ("SpawnWall", 1f, -1f, 5f)
         }

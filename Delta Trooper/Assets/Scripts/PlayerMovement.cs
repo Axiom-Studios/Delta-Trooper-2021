@@ -92,7 +92,46 @@ public class PlayerMovement : MonoBehaviour
         Dash();
 		IndicatorUpdate();
         Immunity();
+        CheckDialogue();
 	}
+
+    void CheckDialogue()
+    {
+        if (Time.time - t1 > 5 && !DialogueSystem.dashExplained)
+        {
+            DialogueSystem.sentencesQueue.Add("Press [LEFT SHIFT] to dash");
+            DialogueSystem.sentencesQueue.Add("Dash gives a temporary speed boost");
+            DialogueSystem.sentencesQueue.Add("It also allows you to pass though dangerous stuff");
+            DialogueSystem.dashExplained = true;
+        }
+
+        if (Time.time - t1 > 10 && !DialogueSystem.antibodiesExplained)
+        {
+            DialogueSystem.sentencesQueue.Add("See those Y-shaped things coming from the left");
+            DialogueSystem.sentencesQueue.Add("Those are antibodies. They are part of the immune system");
+            DialogueSystem.sentencesQueue.Add("Antibodies bind to your receptors making it harder to infect cells");
+            DialogueSystem.sentencesQueue.Add("Too many will slow you down and eventually kill you!");
+            DialogueSystem.antibodiesExplained = true;
+        }
+
+        if (Time.time - t1 > 28 && !DialogueSystem.macrophagesExplained)
+        {
+            DialogueSystem.sentencesQueue.Add("Watch your back!");
+            DialogueSystem.sentencesQueue.Add("Killer T cell is hunting you down");
+            DialogueSystem.sentencesQueue.Add("They can kill you instantly!");
+            DialogueSystem.sentencesQueue.Add("RUN!");
+            DialogueSystem.macrophagesExplained = true;
+        }
+
+        if (Time.time - t1 > 68 && !DialogueSystem.helperbExplained)
+        {
+            DialogueSystem.sentencesQueue.Add("Those cannon things on the left are helper B cells");
+            DialogueSystem.sentencesQueue.Add("They produce antibodies");
+            DialogueSystem.sentencesQueue.Add("When in range, they shoot!");
+            DialogueSystem.sentencesQueue.Add("Stay far away!");
+            DialogueSystem.helperbExplained = true;
+        }
+    }
     
     void Immunity() {
         if (Time.time - immunityStart >= immunityTime && !dashing) {
@@ -170,12 +209,6 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Macrophage")
         {
             Debug.Log("You got hit by a macrophage");
-            if (!DialogueSystem.macrophagesExplained)
-            {
-                DialogueSystem.sentencesQueue.Add("Ouch! You were hit by a killer T cell");
-                DialogueSystem.sentencesQueue.Add("Killer T cells will hunt you down");
-                DialogueSystem.macrophagesExplained = true;
-            }
             Kill();
         }
         else if (other.gameObject.tag == "Antibody")
@@ -185,13 +218,6 @@ public class PlayerMovement : MonoBehaviour
                 audioSource.PlayOneShot(hitSound);
             }
             Debug.Log("You got hit by an antibody");
-            if (!DialogueSystem.antibodiesExplained)
-            {
-                DialogueSystem.sentencesQueue.Add("Avoid antibodies!");
-                DialogueSystem.sentencesQueue.Add("Antibodies bind to your receptors making it harder to infect cells");
-                DialogueSystem.sentencesQueue.Add("Too many will slow you down and eventually kill you!");
-                DialogueSystem.antibodiesExplained = true;
-            }
             //maxSpeed -= 1f;
             health -= 100/8;
             //acceleration /= 1.3f;

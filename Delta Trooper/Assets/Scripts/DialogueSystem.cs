@@ -18,6 +18,8 @@ public class DialogueSystem : MonoBehaviour
     float t1 = 0;
     public static bool macrophagesExplained = false;
     public static bool antibodiesExplained = false;
+    public static bool helperbExplained = false;
+    public static bool dashExplained = false;
 
     // Start is called before the first frame update
     void Start()
