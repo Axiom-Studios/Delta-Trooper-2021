@@ -7,6 +7,7 @@ public class GameOverMenu : MonoBehaviour
 {
     public void ResetScene()
     {
+        DialogueSystem.menuPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

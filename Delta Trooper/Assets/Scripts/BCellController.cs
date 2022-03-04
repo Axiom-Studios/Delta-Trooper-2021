@@ -7,16 +7,22 @@ public class BCellController : MonoBehaviour
     private bool spawning;
     public GameObject player;
     public GameObject antibody;
-    private SpriteRenderer sr;
     private Rigidbody2D rb;
     private float speed = 3;
+
+    private AudioSource audioSource;
+    public AudioClip shootSound;
+
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        sr = this.GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
+        anim = GetComponent<Animator>();
         InvokeRepeating("SpawnEnemy", 1, 0.2f);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,7 +33,6 @@ public class BCellController : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) < 8)
             {
                 spawning = true;
-                sr.color = Color.gray;
             }
         }
         else
@@ -35,7 +40,6 @@ public class BCellController : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) > 8)
             {
                 spawning = false;
-                sr.color = Color.white;
             }
         }
         
@@ -48,13 +52,20 @@ public class BCellController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(player.transform.position.y - this.transform.position.y, player.transform.position.x - this.transform.position.x) * Mathf.Rad2Deg - 90, Vector3.forward);
     }
     public void SpawnEnemy()
     {
         if (spawning)
         {
+            anim.Play("HelperB");
             Vector2 newPos = Vector2.MoveTowards(transform.position, player.transform.position, 1);
+            audioSource.PlayOneShot(shootSound);
             Instantiate(antibody, newPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = (player.transform.position - transform.position).normalized;
+        }
+        else
+        {
+            anim.Play("Default");
         }
     }
 }

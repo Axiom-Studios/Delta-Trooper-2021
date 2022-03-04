@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip killSound;
     public AudioClip deathSound;
+    public AudioClip dashSound;
 
 	// Sliders
 	public Slider playerHealthSlider;
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         lives = 5;
+        health = 100;
         
         t1 = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
@@ -132,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
     public void Dash() {
         //Debug.Log(dashEnd);
         if (!dashing && controls.Player.Dash.triggered && Time.time - dashCooldown >= dashEnd) { // START DASH
+            audioSource.PlayOneShot(dashSound);
             dashing = true;
             dashStart = Time.time;
             dashDirection = controls.Player.Movement.ReadValue<Vector2>();
@@ -209,6 +212,7 @@ public class PlayerMovement : MonoBehaviour
             audioSource.PlayOneShot(deathSound);
             Time.timeScale = 0;
             endScreen.SetActive(true);
+            DialogueSystem.menuPaused = true;
             lives = -1;
         }
         else if (lives > 0)
