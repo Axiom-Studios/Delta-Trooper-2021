@@ -34,12 +34,12 @@ public class SpawnController : MonoBehaviour
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
         new List<(string, float, float, float)>{
-            ("SpawnAntibody", 5f, 15f, 1f),
-            ("SpawnAntibody", 15f, 25f, 0.5f),
+            //("SpawnAntibody", 5f, 15f, 1f),
+            //("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),
             ("SpawnAntibody", 40f, 60f, 0.5f),
             ("DespawnMacrophages", 60f, 60f, -1f),
-            ("SpawnBCell", 65f, -1f, 10f),
+            ("SpawnBCell", 5f, -1f, 10f),
             ("SpawnAntibody", 80f, -1f, 0.5f),
             ("SpawnMacrophage", 100f, 101f, 10f)
         },
@@ -88,6 +88,7 @@ public class SpawnController : MonoBehaviour
         player.transform.position = new Vector2 (0, 0);
         startTime = Time.time;
         spawning = spawnList[level];
+        Debug.Log("Got Spawning for level " + level);
         /*
         foreach(var i in spawnList[level]){
             if (i.Item4 == -1)
@@ -107,7 +108,7 @@ public class SpawnController : MonoBehaviour
     {
         levelProgress = (Time.time - startTime) / levelLengths[level];
         levelProgressBar.value = levelProgress;
-        foreach(var i in spawnList[LevelManagement.level]){
+        foreach(var i in spawnList[level]){
             if ((Time.time - startTime) - i.Item2 > 0 && (Time.time - startTime) - i.Item2 < Time.deltaTime){
                 if (i.Item4 == -1)
                 {
@@ -164,7 +165,6 @@ public class SpawnController : MonoBehaviour
     void ChangeLevel(){
         if (PlayerMovement.lives > 0)
         {
-            LoadLevel();
             level += 1;
             displayLevel += 1;
             if (level == 3)

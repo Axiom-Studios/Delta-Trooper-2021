@@ -52,7 +52,7 @@ public class BCellController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(player.transform.position.y - this.transform.position.y, player.transform.position.x - this.transform.position.x) * Mathf.Rad2Deg - 90, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(player.transform.position.y - this.transform.position.y, player.transform.position.x - this.transform.position.x) * Mathf.Rad2Deg - 113, Vector3.forward);
     }
     public void SpawnEnemy()
     {
