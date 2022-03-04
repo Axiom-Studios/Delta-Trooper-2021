@@ -212,6 +212,7 @@ public class PlayerMovement : MonoBehaviour
             audioSource.PlayOneShot(deathSound);
             Time.timeScale = 0;
             endScreen.SetActive(true);
+            DialogueSystem.menuPaused = true;
             lives = -1;
         }
         else if (lives > 0)
