@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     float lastChange = 0;
     public float blinkSpeed;
     bool immune = false;
+	public float wallKillError;
 
     void Start()
     {
@@ -243,6 +244,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+	void OnCollisionStay2D() {
+		if (transform.position.x - clampCamera.ScreenToWorldPoint(Vector3.zero).x <= wallKillError) {
+			Kill();
+			Debug.Log("RIP");
+		}
+	}
 
     public void Kill()
     {

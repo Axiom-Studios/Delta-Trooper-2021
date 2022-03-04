@@ -33,7 +33,7 @@ public class SpawnController : MonoBehaviour
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
-        new List<(string, float, float, float)>{
+        /*new List<(string, float, float, float)>{
             ("SpawnAntibody", 5f, 15f, 1f),
             ("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),
@@ -50,9 +50,11 @@ public class SpawnController : MonoBehaviour
             ("SpawnBCell", 80f, 120f, 3f),
             //constant antibody spawning
             //("SpawnAntibody", 1f, -1f, 1f)
-        },
+        },*/
         new List<(string, float, float, float)>{
-            ("SpawnWall", 1f, -1f, 5f)
+            ("SpawnWall", 1f, -1f, 5f),
+			("SpawnAntibody", 10f, -1f, 1f),
+			("SpawnBCell", 15f, -1f, 3f)
         }
     };
     public List<int> levelLengths = new List<int>
@@ -165,14 +167,14 @@ public class SpawnController : MonoBehaviour
     void ChangeLevel(){
         if (PlayerMovement.lives > 0)
         {
-            level += 1;
-            displayLevel += 1;
-            if (level == 3)
+            if (level == 2)
             {
                 Win();
             }
             else
             {
+				level += 1;
+            	displayLevel += 1;
                 transitionScreen.SetActive(true);
                 DialogueSystem.menuPaused = true;
                 Debug.Log("Yaaaaaaaaaaaaaaaaaaaa");

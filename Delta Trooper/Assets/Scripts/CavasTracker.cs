@@ -13,4 +13,9 @@ public class CavasTracker : MonoBehaviour
     {
         transform.position = (Vector2) cam.WorldToScreenPoint(tracking.position) + offset;
     }
+
+	void OnEnable() {
+		Update();
+		Debug.Log("canvas tracker enabled");
+	}
 }

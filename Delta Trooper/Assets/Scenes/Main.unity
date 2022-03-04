@@ -334,9 +334,10 @@ MonoBehaviour:
   dashSound: {fileID: 8300000, guid: 4b410037a75145b4baa48582876b49f6, type: 3}
   playerHealthSlider: {fileID: 1801049733}
   dashIndicator: {fileID: 1597442639}
-  immunityTime: 5
+  immunityTime: 2
   spawnController: {fileID: 1116672585}
   blinkSpeed: 0.2
+  wallKillError: 0.5
 --- !u!212 &190887971
 SpriteRenderer:
   m_ObjectHideFlags: 0
