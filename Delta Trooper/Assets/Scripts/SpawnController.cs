@@ -128,7 +128,6 @@ public class SpawnController : MonoBehaviour
             transitionScreen.SetActive(false);
             timeSinceTransition = 0;
             DialogueSystem.menuPaused = false;
-            Debug.Log("haaaaaaaaaaaa");
 
         }
     }
@@ -175,7 +174,6 @@ public class SpawnController : MonoBehaviour
             {
                 transitionScreen.SetActive(true);
                 DialogueSystem.menuPaused = true;
-                Debug.Log("Yaaaaaaaaaaaaaaaaaaaa");
                 timeSinceTransition = Time.unscaledTime;
                 PlayerMovement.lives = 5;
                 BG.GetComponent<BackgroundController>().ChangeBG(level);
