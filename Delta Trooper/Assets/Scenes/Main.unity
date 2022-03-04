@@ -331,6 +331,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 52abed37ae748b049853b54efcaded58, type: 3}
   killSound: {fileID: 8300000, guid: 5b378f6c51dd87f47bbedd399748c48e, type: 3}
   deathSound: {fileID: 8300000, guid: ae9da48b062c9df4bb1c77d4176cae9e, type: 3}
+  dashSound: {fileID: 8300000, guid: 4b410037a75145b4baa48582876b49f6, type: 3}
   playerHealthSlider: {fileID: 1801049733}
   dashIndicator: {fileID: 1597442639}
   immunityTime: 5

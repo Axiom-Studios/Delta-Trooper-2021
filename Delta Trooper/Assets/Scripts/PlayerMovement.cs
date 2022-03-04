@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip killSound;
     public AudioClip deathSound;
+    public AudioClip dashSound;
 
 	// Sliders
 	public Slider playerHealthSlider;
@@ -133,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
     public void Dash() {
         //Debug.Log(dashEnd);
         if (!dashing && controls.Player.Dash.triggered && Time.time - dashCooldown >= dashEnd) { // START DASH
+            audioSource.PlayOneShot(dashSound);
             dashing = true;
             dashStart = Time.time;
             dashDirection = controls.Player.Movement.ReadValue<Vector2>();

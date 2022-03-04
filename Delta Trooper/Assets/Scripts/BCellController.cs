@@ -10,6 +10,9 @@ public class BCellController : MonoBehaviour
     private Rigidbody2D rb;
     private float speed = 3;
 
+    private AudioSource audioSource;
+    public AudioClip shootSound;
+
     Animator anim;
 
     // Start is called before the first frame update
@@ -18,6 +21,8 @@ public class BCellController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
         InvokeRepeating("SpawnEnemy", 1, 0.2f);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +60,7 @@ public class BCellController : MonoBehaviour
         {
             anim.Play("HelperB");
             Vector2 newPos = Vector2.MoveTowards(transform.position, player.transform.position, 1);
+            audioSource.PlayOneShot(shootSound);
             Instantiate(antibody, newPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = (player.transform.position - transform.position).normalized;
         }
         else
