@@ -10,10 +10,10 @@ public class SpawnController : MonoBehaviour
     public static int maxY = 7;
     public static float spawnrate = 0.5f;
     public GameObject player;
-    public GameObject antibody;
-    public GameObject macrophage;
+    public GameObject antibodyPrefab;
+    public GameObject macrophagePrefab;
     public GameObject spawnedMacrophage;
-    public GameObject bCell;
+    public GameObject bCellPrefab;
     public GameObject BG;
     public GameObject winScreen;
     public GameObject endScreen;
@@ -26,10 +26,11 @@ public class SpawnController : MonoBehaviour
         "Kristina", "Larry", "Maddie", "Nate", "Oliver", "Pete", "Quincy", "Raio", "Stacy", "Terry", 
         "Ulysses", "Vincent", "Waldo", "Xander", "Yale", "Zack"
     };
+
     //Function, start, end, rate
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
-        new List<(string, float, float, float)>{
+        /*new List<(string, float, float, float)>{
             ("SpawnAntibody", 5f, 15f, 1f),
             ("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),
@@ -38,11 +39,14 @@ public class SpawnController : MonoBehaviour
             ("SpawnBCell", 65f, -1f, 5f),
             ("SpawnAntibody", 80f, -1f, 0.5f),
             ("SpawnMacrophage", 100f, 101f, 10f)
-        },
+        },*/
         new List<(string, float, float, float)>{
-            ("SpawnBCell", 1f, -1f, 5f),
-            ("SpawnAntibody", 6f, 10f, 0.5f),
-            ("SpawnMacrophage", 11f, -1f, -1f)
+            //B cells (IT GETS WORSE)
+            ("SpawnBCell", 1f, 40f, 5f),
+            ("SpawnBCell", 40f, 80f, 3f),
+            ("SpawnBCell", 80f, 120f, 2f),
+            //constant antibody spawning
+            ("SpawnAntibody", 1f, -1f, 1f)
         },
         new List<(string, float, float, float)>{
             ("SpawnMacrophage", 0f, -1f, 2f)
@@ -75,6 +79,9 @@ public class SpawnController : MonoBehaviour
         foreach(var i in GameObject.FindGameObjectsWithTag("B-Cell")){
             Destroy(i);
         }
+        CancelInvoke("SpawnMacrophage");
+        CancelInvoke("SpawnAntibody");
+        CancelInvoke("SpawnBCell");
         player.transform.position = new Vector2 (0, 0);
         startTime = Time.time;
         spawning = spawnList[level];
@@ -119,7 +126,7 @@ public class SpawnController : MonoBehaviour
         Vector3 spawnPos = transform.position;
         spawnPos.x = transform.position.x + 21;
         spawnPos.y = Random.Range(minY, maxY);
-        Instantiate(antibody, spawnPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = new Vector2 (-1,0);
+        Instantiate(antibodyPrefab, spawnPos, transform.rotation).GetComponent<AntibodyBehavior>().direction = new Vector2 (-1,0);
     }
 
     public void SpawnMacrophage()
@@ -127,14 +134,14 @@ public class SpawnController : MonoBehaviour
         Vector3 spawnPos = transform.position;
         spawnPos.x = transform.position.x - 21;
         spawnPos.y = Random.Range(minY, maxY);
-        spawnedMacrophage = Instantiate(macrophage, spawnPos, transform.rotation);
+        spawnedMacrophage = Instantiate(macrophagePrefab, spawnPos, transform.rotation);
     }
     void SpawnBCell()
     {
         Vector3 spawnPos = transform.position;
         spawnPos.x = transform.position.x + 21;
         spawnPos.y = Random.Range(minY, maxY);
-        Instantiate(bCell, spawnPos, transform.rotation);
+        Instantiate(bCellPrefab, spawnPos, transform.rotation);
     }
 
     void ChangeLevel(){

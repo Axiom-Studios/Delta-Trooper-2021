@@ -8,7 +8,7 @@ public class MacrophageBehavior : MonoBehaviour
     public bool chasing = true;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private float speed = 6;
+    public float speed = 6;
     private Vector3 rot = new Vector3 (0, 0, 0);
     // Start is called before the first frame update
     void Start()
