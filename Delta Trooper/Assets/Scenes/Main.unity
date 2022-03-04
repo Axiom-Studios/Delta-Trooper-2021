@@ -6604,10 +6604,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 190887969}
-  antibody: {fileID: 5770667286974816222, guid: d6fb2f09b3245d14db1ad50953a57c37, type: 3}
-  macrophage: {fileID: 5375533742849913236, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
+  antibodyPrefab: {fileID: 5770667286974816222, guid: d6fb2f09b3245d14db1ad50953a57c37, type: 3}
+  macrophagePrefab: {fileID: 5375533742849913236, guid: 7ae93627f9baf494ab4a45918b5c3985, type: 3}
   spawnedMacrophage: {fileID: 0}
-  bCell: {fileID: 533094754474665446, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
+  bCellPrefab: {fileID: 533094754474665446, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
   BG: {fileID: 434936997}
   winScreen: {fileID: 480866308}
   endScreen: {fileID: 1287615259}
