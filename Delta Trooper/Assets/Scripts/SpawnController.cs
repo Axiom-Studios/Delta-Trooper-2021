@@ -137,9 +137,19 @@ public class SpawnController : MonoBehaviour
     }
 
     void SpawnWall() {
-        Instantiate(wallPrefab, transform.position + (Vector3.right * 21), transform.rotation);
+        Instantiate(wallPrefab, transform.position + (Vector3.right * 18), transform.rotation);
         Debug.Log("beep boop I am a wall");
+		if (!DialogueSystem.wallExplained) {
+			Invoke("WallDialogue", 1);
+		}
     }
+
+	void WallDialogue() {
+		DialogueSystem.sentencesQueue.Add("That wall to the right is a Cell Membrane.");
+        DialogueSystem.sentencesQueue.Add("You have to dash to make it through.");
+        DialogueSystem.sentencesQueue.Add("Watch out though. If it pushes you to the edge of the screen, you die!");
+        DialogueSystem.wallExplained = true;
+	}
 
     void SpawnAntibody()
     {

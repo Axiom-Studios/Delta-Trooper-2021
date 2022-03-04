@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckDialogue()
     {
+		/*
         if (Time.time - t1 > 5 && !DialogueSystem.dashExplained)
         {
             DialogueSystem.sentencesQueue.Add("Press [LEFT SHIFT] to dash.");
@@ -136,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
             DialogueSystem.sentencesQueue.Add("When in range, they shoot!");
             DialogueSystem.sentencesQueue.Add("Stay far away!");
             DialogueSystem.helperbExplained = true;
-        }
+        }*/
 	}
 
     void Blink() {

@@ -20,6 +20,7 @@ public class DialogueSystem : MonoBehaviour
     public static bool antibodiesExplained = false;
     public static bool helperbExplained = false;
     public static bool dashExplained = false;
+	public static bool wallExplained = false;
 
     // Start is called before the first frame update
     void Start()
