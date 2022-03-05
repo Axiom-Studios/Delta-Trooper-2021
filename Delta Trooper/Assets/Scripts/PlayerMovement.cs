@@ -103,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckDialogue()
     {
-		/*
         if (Time.time - t1 > 5 && !DialogueSystem.dashExplained)
         {
             DialogueSystem.sentencesQueue.Add("Press [LEFT SHIFT] to dash.");
@@ -137,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
             DialogueSystem.sentencesQueue.Add("When in range, they shoot!");
             DialogueSystem.sentencesQueue.Add("Stay far away!");
             DialogueSystem.helperbExplained = true;
-        }*/
+        }
 	}
 
     void Blink() {
@@ -193,6 +192,9 @@ public class PlayerMovement : MonoBehaviour
             dashing = true;
             dashStart = Time.time;
             dashDirection = controls.Player.Movement.ReadValue<Vector2>();
+			if (dashDirection == Vector2.zero) {
+				dashDirection = Vector2.right;
+			}
             playerCollider.enabled = false;
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, .5f);
         }

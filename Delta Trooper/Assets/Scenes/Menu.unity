@@ -1051,7 +1051,7 @@ MonoBehaviour:
     Dash:
     LEFT SHIFT
 
-    Pause: E
+    Pause: TAB
 
     Skip dialogue: SPACE'
 --- !u!222 &1615176985

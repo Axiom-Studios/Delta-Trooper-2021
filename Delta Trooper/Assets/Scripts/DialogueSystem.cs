@@ -64,7 +64,7 @@ public class DialogueSystem : MonoBehaviour
             pauseMenu.SetActive(false);
         }
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
             StartCoroutine(Pause());
         }
@@ -106,7 +106,7 @@ public class DialogueSystem : MonoBehaviour
 
     IEnumerator Pause()
     {
-        yield return new WaitUntil(() => !Keyboard.current.escapeKey.IsPressed());
+        yield return new WaitUntil(() => !Keyboard.current.tabKey.IsPressed());
         menuPaused = !menuPaused;
     }
 
