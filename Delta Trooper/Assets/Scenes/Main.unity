@@ -7453,7 +7453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracking: {fileID: 190887972}
   cam: {fileID: 519420031}
-  offset: {x: 0, y: 40}
+  offset: {x: 0, y: 70}
 --- !u!114 &1597442639
 MonoBehaviour:
   m_ObjectHideFlags: 0
