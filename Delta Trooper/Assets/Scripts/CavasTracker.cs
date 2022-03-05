@@ -11,7 +11,7 @@ public class CavasTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = (Vector2) cam.WorldToScreenPoint(tracking.position) + offset;
+        transform.position = (Vector2) cam.WorldToScreenPoint(tracking.position + (Vector3) offset);
     }
 
 	void OnEnable() {
