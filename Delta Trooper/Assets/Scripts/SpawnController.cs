@@ -46,7 +46,7 @@ public class SpawnController : MonoBehaviour
         new List<(string, float, float, float)>{
             //B cells (IT GETS WORSE)
             ("SpawnBCell", 1f, 40f, 5f),
-            ("SpawnMacrophage", 10f, 11f, -1f),
+            //("SpawnMacrophage", 10f, 11f, -1f),
             ("SpawnBCell", 40f, 80f, 4f),
             ("SpawnBCell", 80f, 120f, 3f),
             //constant antibody spawning
@@ -54,7 +54,7 @@ public class SpawnController : MonoBehaviour
         },
         new List<(string, float, float, float)>{
             ("SpawnWall", 1f, -1f, 5f),
-            ("SpawnMacrophage", 10f, 11f, -1f),
+            //("SpawnMacrophage", 10f, 11f, -1f),
 			("SpawnAntibody", 10f, -1f, 1f),
 			("SpawnBCell", 15f, -1f, 3f)
         }
