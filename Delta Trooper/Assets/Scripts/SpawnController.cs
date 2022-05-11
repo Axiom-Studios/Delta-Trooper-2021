@@ -19,6 +19,8 @@ public class SpawnController : MonoBehaviour
     public GameObject winScreen;
     public GameObject endScreen;
     public GameObject transitionScreen;
+    public GameObject currentBoss;
+    public GameObject trainBoss;
     public Text winText;
     public static int level = 0;
     public Slider levelProgressBar;
@@ -44,13 +46,13 @@ public class SpawnController : MonoBehaviour
             ("SpawnMacrophage", 100f, 101f, 10f)
         },
         new List<(string, float, float, float)>{
-            //B cells (IT GETS WORSE)
             ("SpawnBCell", 1f, 40f, 5f),
             //("SpawnMacrophage", 10f, 11f, -1f),
             ("SpawnBCell", 40f, 80f, 4f),
             ("SpawnBCell", 80f, 120f, 3f),
-            //constant antibody spawning
-            //("SpawnAntibody", 1f, -1f, 1f)
+            ("SpawnTrain", 10f, 120f, -1f),
+            ("NextPhase", 20f, 120f, -1f),
+            ("NextPhase", 30f, 120f, -1f),
         },
         new List<(string, float, float, float)>{
             ("SpawnWall", 1f, -1f, 5f),
@@ -197,11 +199,20 @@ public class SpawnController : MonoBehaviour
             }
         }
     }
+
+    public void SpawnTrain(){
+        currentBoss = Instantiate(trainBoss, new Vector2(18, -7), transform.rotation);
+    }
+
+    public void NextPhase(){
+        currentBoss.GetComponent<MonoBehavior>().NextPhase();
+    }
     public void DespawnMacrophages(){
         foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
             i.GetComponent<MacrophageBehavior>().chasing = false;
         }
     }
+
     public void Win(){
         Debug.Log("You won congrats ig");
         winScreen.SetActive(true);

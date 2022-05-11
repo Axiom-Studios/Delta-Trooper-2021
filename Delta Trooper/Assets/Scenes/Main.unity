@@ -6779,10 +6779,12 @@ MonoBehaviour:
   winScreen: {fileID: 480866308}
   endScreen: {fileID: 1287615259}
   transitionScreen: {fileID: 2040165021}
+  currentBoss: {fileID: 0}
+  trainBoss: {fileID: 0}
   winText: {fileID: 0}
   levelProgressBar: {fileID: 799777449}
   displayLevel: 0
-  levelLengths: 780000007800000078000000
+  levelLengths: 030000007800000078000000
   startTime: 0
 --- !u!4 &1116672586
 Transform:
