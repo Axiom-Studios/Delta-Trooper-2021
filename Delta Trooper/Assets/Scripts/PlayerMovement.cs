@@ -246,6 +246,21 @@ public class PlayerMovement : MonoBehaviour
                 Kill();
             }
         }
+        else if (other.gameObject.tag == "Drill") {
+            if (lives >= 0)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
+            Debug.Log("You got hit by an antibody");
+            //maxSpeed -= 1f;
+            health -= 100/8;
+            //acceleration /= 1.3f;
+            Destroy(other.gameObject);
+            if (health <= 1)
+            {
+                Kill();
+            }
+        }
     }
 
 	void OnCollisionStay2D() {

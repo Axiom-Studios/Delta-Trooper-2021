@@ -98,4 +98,4 @@ MonoBehaviour:
   bobScale: 2
   xPosition: 8
   ricochetDrill: {fileID: 1182393058769513683, guid: 95f6313177f41a64ebf2f4d6ab1da0a0, type: 3}
-  rate: 2
+  rate: 0.125
