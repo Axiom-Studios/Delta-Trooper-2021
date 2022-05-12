@@ -8,6 +8,7 @@ TagManager:
   - Antibody
   - Cell
   - B-Cell
+  - Drill Molar
   layers:
   - Default
   - TransparentFX
