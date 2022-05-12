@@ -225,9 +225,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Macrophage")
+        if (other.gameObject.tag == "Macrophage" || other.gameObject.tag == "Dynamite")
         {
-            Debug.Log("You got hit by a macrophage");
             Kill();
         }
         else if (other.gameObject.tag == "Antibody")
@@ -236,9 +235,23 @@ public class PlayerMovement : MonoBehaviour
             {
                 audioSource.PlayOneShot(hitSound);
             }
-            Debug.Log("You got hit by an antibody");
             //maxSpeed -= 1f;
             health -= 100/8;
+            //acceleration /= 1.3f;
+            Destroy(other.gameObject);
+            if (health <= 1)
+            {
+                Kill();
+            }
+        }
+        else if (other.gameObject.tag == "Coin")
+        {
+            if (lives >= 0)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
+            //maxSpeed -= 1f;
+            health -= 25;
             //acceleration /= 1.3f;
             Destroy(other.gameObject);
             if (health <= 1)

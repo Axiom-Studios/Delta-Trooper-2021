@@ -36,6 +36,7 @@ public class SpawnController : MonoBehaviour
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
         new List<(string, float, float, float)>{
+            ("SpawnTrain", 0.1f, 120f, -1f),
             ("SpawnAntibody", 5f, 15f, 1f),
             ("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),
@@ -50,7 +51,6 @@ public class SpawnController : MonoBehaviour
             //("SpawnMacrophage", 10f, 11f, -1f),
             ("SpawnBCell", 40f, 80f, 4f),
             ("SpawnBCell", 80f, 120f, 3f),
-            ("SpawnTrain", 10f, 120f, -1f),
             ("NextPhase", 20f, 120f, -1f),
             ("NextPhase", 30f, 120f, -1f),
         },
@@ -201,12 +201,13 @@ public class SpawnController : MonoBehaviour
     }
 
     public void SpawnTrain(){
-        currentBoss = Instantiate(trainBoss, new Vector2(18, -7), transform.rotation);
+        currentBoss = Instantiate(trainBoss, new Vector2(2, -7.5f), transform.rotation);
     }
 
     public void NextPhase(){
         currentBoss.GetComponent<TrainController>().NextPhase();
     }
+
     public void DespawnMacrophages(){
         foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
             i.GetComponent<MacrophageBehavior>().chasing = false;
