@@ -205,7 +205,7 @@ public class SpawnController : MonoBehaviour
     }
 
     public void NextPhase(){
-        currentBoss.GetComponent<MonoBehavior>().NextPhase();
+        currentBoss.GetComponent<TrainController>().NextPhase();
     }
     public void DespawnMacrophages(){
         foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
