@@ -8,6 +8,8 @@ TagManager:
   - Antibody
   - Cell
   - B-Cell
+  - Coin
+  - Dynamite
   layers:
   - Default
   - TransparentFX
