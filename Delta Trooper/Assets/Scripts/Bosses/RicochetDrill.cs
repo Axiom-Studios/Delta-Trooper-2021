@@ -17,9 +17,9 @@ public class RicochetDrill : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        Vector2 movement = moveDirection * speed * Time.deltaTime;
+        Vector2 movement = moveDirection * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + movement);
         transform.rotation = Quaternion.Euler(0, 0, GetAngleByHeading(moveDirection));
 
