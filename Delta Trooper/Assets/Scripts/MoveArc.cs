@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MoveArc : MonoBehaviour
 {
-    private float upwardSpeed;
-    private float leftSpeed;
+    public float upwardSpeed;
+    public float leftSpeed;
     public float speed = 7;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -17,17 +17,17 @@ public class MoveArc : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         sr = this.GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
-        upwardSpeed = Random.Range(2.5f,4.5f);
-        leftSpeed = Random.Range(-1.5f,-2.5f);
+        upwardSpeed = Random.Range(3f,4f);
+        leftSpeed = Random.Range(-2f,-3f);
         startTime = Time.time;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 velocity = new Vector2(leftSpeed, upwardSpeed) * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + velocity);
-        upwardSpeed -= 0.02f;
+        upwardSpeed -= Time.fixedDeltaTime * 8;
         if (Vector2.Distance(player.transform.position, transform.position) > 40)
         {
             Destroy(gameObject);
