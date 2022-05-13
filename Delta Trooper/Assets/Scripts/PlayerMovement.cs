@@ -253,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
             }
             Debug.Log("You got hit by an antibody");
             //maxSpeed -= 1f;
-            health -= 100/8;
+            health -= 100/5;
             //acceleration /= 1.3f;
             Destroy(other.gameObject);
             if (health <= 1)
