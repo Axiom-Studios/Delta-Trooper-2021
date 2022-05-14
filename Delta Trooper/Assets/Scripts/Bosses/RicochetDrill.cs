@@ -11,7 +11,7 @@ public class RicochetDrill : MonoBehaviour
 
     void OnEnable()
     {
-        transform.position = GameObject.FindGameObjectsWithTag("Drill Molar")[0].transform.position + (Vector3.left * 3);
+        transform.position = GameObject.FindGameObjectWithTag("Drill Molar").transform.position + (Vector3.left * 3);
         moveDirection = Vector3.down + Vector3.left;
         transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(moveDirection, Vector3.left));
         rb = gameObject.GetComponent<Rigidbody2D>();
