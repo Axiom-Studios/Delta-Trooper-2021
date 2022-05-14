@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2423217964292381398}
   - component: {fileID: 2297589380222302491}
   - component: {fileID: 5139465757975044893}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ricochet_Drill
   m_TagString: Drill
   m_Icon: {fileID: 0}

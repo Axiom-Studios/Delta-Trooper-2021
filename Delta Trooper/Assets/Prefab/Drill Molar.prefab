@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6068568359370761797}
   - component: {fileID: 7614176059588213445}
   - component: {fileID: 1395599877734807809}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Drill Molar
   m_TagString: Drill Molar
   m_Icon: {fileID: 0}
