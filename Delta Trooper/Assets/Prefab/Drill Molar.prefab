@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 440024641756577648}
   - component: {fileID: -6068568359370761797}
   - component: {fileID: 7614176059588213445}
+  - component: {fileID: 1395599877734807809}
   m_Layer: 0
   m_Name: Drill Molar
   m_TagString: Drill Molar
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e1878c2c9132ae74194a6ebcb50dd6ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01b5f7b642267484d9e300eb68dfdd5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,12 +100,13 @@ MonoBehaviour:
   bobScale: 2
   xPosition: 8
   ricochetDrill: {fileID: 1182393058769513683, guid: 95f6313177f41a64ebf2f4d6ab1da0a0, type: 3}
-  rate: 0.125
+  rate: 2
   rubble: {fileID: 3430851186326982822, guid: 96f5c0c8b24af2a488e1f396d0f36429, type: 3}
-  rubbleAmount: 4
+  rubbleAmount: 10
   loopRate: 3
   drillTime: 2
   drillMoveSpeed: 5
+  drillOscillationScale: 1
   maxY: 5
 --- !u!50 &7614176059588213445
 Rigidbody2D:
@@ -127,3 +129,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &1395599877734807809
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227481298906143516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d6198f943973c046bde88d17ef7cb2b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

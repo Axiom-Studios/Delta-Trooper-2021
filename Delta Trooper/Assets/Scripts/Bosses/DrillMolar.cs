@@ -8,13 +8,15 @@ public class DrillMolar : MonoBehaviour
     public float xPosition;
     float phase = 1;
 	float waggleTime;
+
     [Header("Ricochet")]
     public GameObject ricochetDrill;
     public float rate;
     float lastRicochet;
+
 	[Header("Drill")]
 	public GameObject rubble;
-	public float rubbleAmount;
+	public float rubbleAmount = 10;
 	public float loopRate;
 	public float drillTime;
 	public float drillMoveSpeed;
@@ -48,7 +50,7 @@ public class DrillMolar : MonoBehaviour
     }
 
     void Ricochet() {
-        if (Time.time - lastRicochet >= 1/rate) {
+        if (Time.time - lastRicochet >= rate) {
             Instantiate(ricochetDrill);
             lastRicochet = Time.time;
         }
