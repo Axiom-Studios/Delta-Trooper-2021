@@ -225,8 +225,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Macrophage" || other.gameObject.tag == "Dynamite")
+        if (other.gameObject.tag == "Macrophage")
         {
+            if (lives >= 0)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
             Kill();
         }
         else if (other.gameObject.tag == "Antibody")
@@ -284,6 +288,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 Kill();
             }
+        }
+        else if (other.gameObject.layer == 3){
+            if (lives >= 0)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
+            Kill();
         }
   }
 
