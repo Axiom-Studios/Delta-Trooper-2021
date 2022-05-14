@@ -28,8 +28,15 @@ public class DrillMolar : MonoBehaviour
 
     void OnEnable() {
         Debug.Log("Spawned Drill Molar");
-        transform.position = Vector3.right * xPosition;
+        transform.position = Vector3.right * 20;
 		rb = gameObject.GetComponent<Rigidbody2D>();
+    }
+	
+	void Update()
+    {
+        if (rb.position.x > 8){
+            rb.MovePosition(rb.position + (new Vector2(-8, 0) * Time.deltaTime));
+        }
     }
 
     void FixedUpdate() {

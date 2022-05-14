@@ -24,7 +24,6 @@ public class SpawnController : MonoBehaviour
     public GameObject winScreen;
     public GameObject endScreen;
     public GameObject transitionScreen;
-    public GameObject currentBoss;
     public GameObject trainBoss;
     public Text winText;
     public static int level = 0;
@@ -41,8 +40,7 @@ public class SpawnController : MonoBehaviour
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
         new List<(string, float, float, float)>{
-            /*("SpawnDrillMolar", 5f, -1f, -1f),
-			("AdvanceDrillPhase", 15f, -1f, -1f),*/
+            ("SpawnDrillMolar", 5f, -1f, -1f),
             ("SpawnAntibody", 5f, 15f, 1f),
             ("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),

@@ -20,7 +20,7 @@ public class TrainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x > 4){
+        if (rb.position.x > 4){
             rb.MovePosition(rb.position + (new Vector2(-8, 0) * Time.deltaTime));
         }
     }
