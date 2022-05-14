@@ -10,11 +10,16 @@ public class SpawnController : MonoBehaviour
     public static int maxY = 7;
     public static float spawnrate = 0.5f;
     public GameObject player;
+    [Header("Enemy Prefabs")]
     public GameObject antibodyPrefab;
     public GameObject macrophagePrefab;
     public GameObject spawnedMacrophage;
     public GameObject bCellPrefab;
     public GameObject wallPrefab;
+    [Header("Boss Prefabs")]
+    public GameObject drillMolar;
+    public GameObject currentBoss;
+    [Header("Other")]
     public GameObject BG;
     public GameObject winScreen;
     public GameObject endScreen;
@@ -36,14 +41,17 @@ public class SpawnController : MonoBehaviour
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
         new List<(string, float, float, float)>{
+            /*("SpawnDrillMolar", 5f, -1f, -1f),
+			("AdvanceDrillPhase", 15f, -1f, -1f),*/
             ("SpawnAntibody", 5f, 15f, 1f),
             ("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),
+            
             ("SpawnAntibody", 40f, 60f, 0.5f),
             ("DespawnMacrophages", 60f, 60f, -1f),
             ("SpawnBCell", 65f, -1f, 10f),
             ("SpawnAntibody", 80f, -1f, 0.5f),
-            ("SpawnMacrophage", 100f, 101f, 10f)
+            ("SpawnMacrophage", 100f, -1f, -1f)
         },
         new List<(string, float, float, float)>{
             ("SpawnBCell", 1f, 40f, 5f),
@@ -209,4 +217,11 @@ public class SpawnController : MonoBehaviour
         winText.text = "You Infected " + names[Mathf.RoundToInt(Random.Range(0,names.Length))] + "! \n\nCongratulations!";
         Time.timeScale = 0;
     }
+    //BOSS FUNCTIONS
+    public void SpawnDrillMolar() {
+        currentBoss = Instantiate(drillMolar);
+    }
+	public void AdvanceDrillPhase() {
+		currentBoss.GetComponent<DrillMolar>().AdvancePhase();
+	}
 }

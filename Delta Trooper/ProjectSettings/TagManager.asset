@@ -10,6 +10,9 @@ TagManager:
   - B-Cell
   - Coin
   - Dynamite
+  - Drill Molar
+  - Drill
+  - Rock
   layers:
   - Default
   - TransparentFX

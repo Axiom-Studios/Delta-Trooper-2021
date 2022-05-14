@@ -252,6 +252,32 @@ public class PlayerMovement : MonoBehaviour
             }
             //maxSpeed -= 1f;
             health -= 25;
+            Destroy(other.gameObject);
+            if (health <= 1)
+            {
+                Kill();
+            }
+        }
+        else if (other.gameObject.tag == "Drill") {
+            if (lives >= 0)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
+            health -= 100/5;
+            Destroy(other.gameObject);
+            if (health <= 1)
+            {
+                Kill();
+            }
+        }
+        else if (other.gameObject.tag == "Rock") {
+            if (lives >= 0)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
+            Debug.Log("You got hit by a rock");
+            //maxSpeed -= 1f;
+            health -= 100/10;
             //acceleration /= 1.3f;
             Destroy(other.gameObject);
             if (health <= 1)
@@ -259,7 +285,7 @@ public class PlayerMovement : MonoBehaviour
                 Kill();
             }
         }
-    }
+  }
 
 	void OnCollisionStay2D() {
 		if (transform.position.x - clampCamera.ScreenToWorldPoint(Vector3.zero).x <= wallKillError) {
