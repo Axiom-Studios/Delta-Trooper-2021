@@ -17,8 +17,8 @@ public class MoveArc : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         sr = this.GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
-        upwardSpeed = Random.Range(3f,4f);
-        leftSpeed = Random.Range(-2f,-3f);
+        upwardSpeed = Random.Range(2.5f,4.5f);
+        leftSpeed = Random.Range(-1.5f,-3f);
         startTime = Time.time;
     }
 
@@ -28,6 +28,7 @@ public class MoveArc : MonoBehaviour
         Vector2 velocity = new Vector2(leftSpeed, upwardSpeed) * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + velocity);
         upwardSpeed -= Time.fixedDeltaTime * 8;
+        transform.Rotate(new Vector3(0, 0, 360) * Time.fixedDeltaTime);
         if (Vector2.Distance(player.transform.position, transform.position) > 40)
         {
             Destroy(gameObject);

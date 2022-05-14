@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3002229134135884037}
   - component: {fileID: -6456553199629586824}
   - component: {fileID: 7505173704323007846}
-  m_Layer: 0
+  - component: {fileID: 2329676326204605385}
+  m_Layer: 3
   m_Name: Dynamite
   m_TagString: Dynamite
   m_Icon: {fileID: 0}
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &3002229134135884037
@@ -144,5 +145,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e6978cd953a9b4281f6650ffe28599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upwardSpeed: 0
+  leftSpeed: 0
   speed: 7
   player: {fileID: 0}
+--- !u!95 &2329676326204605385
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6740003738734918696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb62f45144bd8ea44915bc9ac9799daf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

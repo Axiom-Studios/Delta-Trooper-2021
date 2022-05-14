@@ -173,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
 	void Movement()
 	{
         if (!dashing) {
-    		    Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
+            Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
             input = input.normalized;
             rb.velocity += input * Time.fixedDeltaTime * acceleration;
             rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed));

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2415918623102749357}
   - component: {fileID: 1051840754688048944}
-  m_Layer: 0
+  - component: {fileID: 6597257603173985668}
+  m_Layer: 3
   m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d2a14f1b4a61f4e4cb059549b6cb8fdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9f6a78b754582747a46c1af35a0000c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,6 +83,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6597257603173985668
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329270866411874741}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccd574103c828544c94291492ec2c051, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1536756168771620524
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +112,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2732501199858934800}
   - component: {fileID: 3246198290533325702}
-  m_Layer: 0
+  - component: {fileID: 8342361348462682060}
+  m_Layer: 3
   m_Name: Moneycart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +174,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8a6b0bb70089e954b8753103f49ef622, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0117586d39e6bcb49afdc9fdef65a770, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,6 +185,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8342361348462682060
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536756168771620524}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 71ff07a7ddcfd84489523fabec6b3591, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3285998320173136460
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +216,8 @@ GameObject:
   - component: {fileID: -4055790562629886690}
   - component: {fileID: -2143629180881261153}
   - component: {fileID: 2148653172651001678}
-  m_Layer: 0
+  - component: {fileID: -8883492807458263092}
+  m_Layer: 3
   m_Name: TrainBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 3285998320173136460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -30.306873, y: -3.16274, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 2732501199858934800}
   - {fileID: 2415918623102749357}
@@ -263,6 +304,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 15.994478, y: 8.616241}
   m_EdgeRadius: 0
+--- !u!95 &-8883492807458263092
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3285998320173136460}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccd574103c828544c94291492ec2c051, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7490229735307119025
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8561114379545584442}
   - component: {fileID: 1184389001648904504}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Atop_Moneycart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7490229735307119025}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1400013, y: 5.7099996, z: 0}
+  m_LocalPosition: {x: -1.1400013, y: 5.7099996, z: -1}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 7749533633190522541}
@@ -334,7 +394,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba1c8e5105b9e4c46a5abb42122528eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7f6b43dac5b4d8459a2663bd755d801, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -355,7 +415,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7307886940708432854}
   - component: {fileID: 4668723838363112387}
-  m_Layer: 0
+  - component: {fileID: 7273135014022507094}
+  m_Layer: 3
   m_Name: Redd_Atop_Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8566477057631391276}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.84, y: 5.34, z: 0}
+  m_LocalPosition: {x: 4.84, y: 5.14, z: -1}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 7749533633190522541}
@@ -416,7 +477,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 387ec6efad2f1bb449a587bb37014afc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f2ecc7d8840bfc43a1cc62460b8e3cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -427,3 +488,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7273135014022507094
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8566477057631391276}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3350c98780c4f824aac1788cafa3b8eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

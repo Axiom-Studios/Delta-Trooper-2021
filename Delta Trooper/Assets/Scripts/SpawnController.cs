@@ -36,7 +36,6 @@ public class SpawnController : MonoBehaviour
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
         new List<(string, float, float, float)>{
-            ("SpawnTrain", 0.1f, 120f, -1f),
             ("SpawnAntibody", 5f, 15f, 1f),
             ("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),
@@ -49,10 +48,9 @@ public class SpawnController : MonoBehaviour
         new List<(string, float, float, float)>{
             ("SpawnBCell", 1f, 40f, 5f),
             //("SpawnMacrophage", 10f, 11f, -1f),
-            ("SpawnBCell", 40f, 80f, 4f),
-            ("SpawnBCell", 80f, 120f, 3f),
-            ("NextPhase", 20f, 120f, -1f),
-            ("NextPhase", 30f, 120f, -1f),
+            ("SpawnBCell", 40f, 60f, 4f),
+            ("SpawnBCell", 60f, 90f, 3f),
+            ("SpawnTrain", 90f, 90f, -1f),
         },
         new List<(string, float, float, float)>{
             ("SpawnWall", 1f, -1f, 5f),
@@ -79,14 +77,10 @@ public class SpawnController : MonoBehaviour
     void LoadLevel()
     {
         Debug.Log("Loading Level: " + level);
-        foreach(var i in GameObject.FindGameObjectsWithTag("Antibody")){
-            Destroy(i);
-        }
-        foreach(var i in GameObject.FindGameObjectsWithTag("Macrophage")){
-            Destroy(i);
-        }
-        foreach(var i in GameObject.FindGameObjectsWithTag("B-Cell")){
-            Destroy(i);
+        foreach(var i in FindObjectsOfType<GameObject>()){
+            if (i.layer == 3){
+                Destroy(i);
+            }
         }
         CancelInvoke("SpawnMacrophage");
         CancelInvoke("SpawnAntibody");
@@ -191,7 +185,6 @@ public class SpawnController : MonoBehaviour
             	displayLevel += 1;
                 transitionScreen.SetActive(true);
                 DialogueSystem.menuPaused = true;
-                Debug.Log("Yaaaaaaaaaaaaaaaaaaaa");
                 timeSinceTransition = Time.unscaledTime;
                 PlayerMovement.lives = 5;
                 BG.GetComponent<BackgroundController>().ChangeBG(level);
@@ -201,11 +194,7 @@ public class SpawnController : MonoBehaviour
     }
 
     public void SpawnTrain(){
-        currentBoss = Instantiate(trainBoss, new Vector2(2, -7.5f), transform.rotation);
-    }
-
-    public void NextPhase(){
-        currentBoss.GetComponent<TrainController>().NextPhase();
+        currentBoss = Instantiate(trainBoss, new Vector2(20f, -7.5f), transform.rotation);
     }
 
     public void DespawnMacrophages(){
