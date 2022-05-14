@@ -6803,6 +6803,7 @@ MonoBehaviour:
   winScreen: {fileID: 480866308}
   endScreen: {fileID: 1287615259}
   transitionScreen: {fileID: 2040165021}
+  trainBoss: {fileID: 3285998320173136460, guid: a14ebf7b514de8f4b9a5379132d1ed4b, type: 3}
   winText: {fileID: 0}
   levelProgressBar: {fileID: 799777449}
   displayLevel: 0
