@@ -18,13 +18,14 @@ public class SpawnController : MonoBehaviour
     public GameObject wallPrefab;
     [Header("Boss Prefabs")]
     public GameObject drillMolar;
+    public GameObject trainBoss;
+    public GameObject tBoneBoss;
     public GameObject currentBoss;
     [Header("Other")]
     public GameObject BG;
     public GameObject winScreen;
     public GameObject endScreen;
     public GameObject transitionScreen;
-    public GameObject trainBoss;
     public Text winText;
     public static int level = 0;
     public Slider levelProgressBar;
@@ -40,29 +41,32 @@ public class SpawnController : MonoBehaviour
     public List<List<(string, float, float, float)>> spawnList = new List<List<(string, float, float, float)>>
     {
         new List<(string, float, float, float)>{
-            ("SpawnDrillMolar", 5f, -1f, -1f),
             ("SpawnAntibody", 5f, 15f, 1f),
             ("SpawnAntibody", 15f, 25f, 0.5f),
             ("SpawnMacrophage", 25f, 25f, -1f),
-            
             ("SpawnAntibody", 40f, 60f, 0.5f),
             ("DespawnMacrophages", 60f, 60f, -1f),
-            ("SpawnBCell", 65f, -1f, 10f),
-            ("SpawnAntibody", 80f, -1f, 0.5f),
-            ("SpawnMacrophage", 100f, -1f, -1f)
+            ("SpawnBCell", 65f, 90f, 10f),
+            ("SpawnAntibody", 75f, 90f, 0.5f),
+            ("SpawnMacrophage", 75f, 90f, -1f),
+            ("SpawnDrillMolar", 90f, -1f, -1f),
+            ("AdvanceDrillMolarPhase", 105f, -1f, -1f)
         },
         new List<(string, float, float, float)>{
             ("SpawnBCell", 1f, 40f, 5f),
-            //("SpawnMacrophage", 10f, 11f, -1f),
+            ("SpawnMacrophage", 20f, 11f, -1f),
             ("SpawnBCell", 40f, 60f, 4f),
             ("SpawnBCell", 60f, 90f, 3f),
             ("SpawnTrain", 90f, 90f, -1f),
         },
         new List<(string, float, float, float)>{
-            ("SpawnWall", 1f, -1f, 5f),
+            ("SpawnWall", 1f, 60f, 5f),
             //("SpawnMacrophage", 10f, 11f, -1f),
-			("SpawnAntibody", 10f, -1f, 1f),
-			("SpawnBCell", 15f, -1f, 3f)
+			("SpawnAntibody", 20f, 60f, 1f),
+			("SpawnBCell", 30f, 60f, 3f),
+            ("SpawnTBone", 60f, -1f, -1f),
+            ("SpawnAntibody", 80f, -1f, 1f),
+            ("SpawnBCell", 100f, -1f, 3f)
         }
     };
     public List<int> levelLengths = new List<int>
@@ -201,6 +205,10 @@ public class SpawnController : MonoBehaviour
 
     public void SpawnTrain(){
         currentBoss = Instantiate(trainBoss, new Vector2(20f, -7.5f), transform.rotation);
+    }
+
+    public void SpawnTBone(){
+        currentBoss = Instantiate(tBoneBoss, new Vector2(20f, -2f), transform.rotation);
     }
 
     public void DespawnMacrophages(){

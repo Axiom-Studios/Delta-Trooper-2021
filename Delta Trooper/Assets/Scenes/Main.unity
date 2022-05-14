@@ -1810,7 +1810,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &588822870
 Animator:
@@ -6796,13 +6796,13 @@ MonoBehaviour:
   bCellPrefab: {fileID: 533094754474665446, guid: f0fe114eefb4260499909d0da0b40e22, type: 3}
   wallPrefab: {fileID: 4619169428746721796, guid: 007ccef0bc40d224d9b46ecc4f09e818, type: 3}
   drillMolar: {fileID: 3227481298906143516, guid: 9fb881cce15f4cd4cad0f9060d530ace, type: 3}
+  trainBoss: {fileID: 3285998320173136460, guid: a14ebf7b514de8f4b9a5379132d1ed4b, type: 3}
+  tBoneBoss: {fileID: 5010899615607457917, guid: a4866714c0d5a0e498386e590190ce59, type: 3}
   currentBoss: {fileID: 0}
   BG: {fileID: 434936997}
   winScreen: {fileID: 480866308}
   endScreen: {fileID: 1287615259}
   transitionScreen: {fileID: 2040165021}
-  currentBoss: {fileID: 0}
-  trainBoss: {fileID: 3285998320173136460, guid: a14ebf7b514de8f4b9a5379132d1ed4b, type: 3}
   winText: {fileID: 0}
   levelProgressBar: {fileID: 799777449}
   displayLevel: 0
@@ -7140,7 +7140,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1310196925
 Animator:
