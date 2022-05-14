@@ -23,7 +23,7 @@ public class IntroBackgroundAnimation : MonoBehaviour
     {
         if (isAnimating)
         {
-            curFrame = Mathf.FloorToInt(Time.time * 20);
+            curFrame = Mathf.FloorToInt(Time.time * 19);
             if (curFrame >= textures.Length)
             {
                 curFrame = textures.Length - 1;
