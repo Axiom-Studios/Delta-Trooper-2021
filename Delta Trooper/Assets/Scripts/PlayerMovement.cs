@@ -173,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
 	void Movement()
 	{
         if (!dashing) {
-    		    Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
+            Vector2 input = controls.Player.Movement.ReadValue<Vector2>();
             input = input.normalized;
             rb.velocity += input * Time.fixedDeltaTime * acceleration;
             rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed));
@@ -225,9 +225,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Macrophage")
+        if (other.gameObject.tag == "Macrophage" || other.gameObject.tag == "Dynamite")
         {
-            Debug.Log("You got hit by a macrophage");
             Kill();
         }
         else if (other.gameObject.tag == "Antibody")
@@ -236,10 +235,23 @@ public class PlayerMovement : MonoBehaviour
             {
                 audioSource.PlayOneShot(hitSound);
             }
-            Debug.Log("You got hit by an antibody");
             //maxSpeed -= 1f;
             health -= 100/8;
             //acceleration /= 1.3f;
+            Destroy(other.gameObject);
+            if (health <= 1)
+            {
+                Kill();
+            }
+        }
+        else if (other.gameObject.tag == "Coin")
+        {
+            if (lives >= 0)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
+            //maxSpeed -= 1f;
+            health -= 25;
             Destroy(other.gameObject);
             if (health <= 1)
             {
@@ -251,17 +263,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 audioSource.PlayOneShot(hitSound);
             }
-            Debug.Log("You got hit by a drill");
-            //maxSpeed -= 1f;
             health -= 100/5;
-            //acceleration /= 1.3f;
             Destroy(other.gameObject);
             if (health <= 1)
             {
                 Kill();
             }
         }
-		else if (other.gameObject.tag == "Rock") {
+        else if (other.gameObject.tag == "Rock") {
             if (lives >= 0)
             {
                 audioSource.PlayOneShot(hitSound);
@@ -276,7 +285,7 @@ public class PlayerMovement : MonoBehaviour
                 Kill();
             }
         }
-    }
+  }
 
 	void OnCollisionStay2D() {
 		if (transform.position.x - clampCamera.ScreenToWorldPoint(Vector3.zero).x <= wallKillError) {
