@@ -18,6 +18,7 @@ public class DrillMolar : MonoBehaviour
 	public float loopRate;
 	public float drillTime;
 	public float drillMoveSpeed;
+	public float drillOscillationScale = 1;
 	public float maxY = 5;
 	float lastDrill;
 	float drillPhase = 0;
@@ -73,7 +74,7 @@ public class DrillMolar : MonoBehaviour
 				break;
 
 			case 2:
-				float newX = Mathf.Sin(waggleTime * Mathf.PI) * bobScale;
+				float newX = Mathf.Sin(waggleTime * Mathf.PI) * drillOscillationScale;
 	        	Vector2 newPosition = new Vector2(newX + xPosition, rb.position.y);
 				rb.MovePosition(newPosition);
 				if (Time.time - lastDrill >= drillTime) {
