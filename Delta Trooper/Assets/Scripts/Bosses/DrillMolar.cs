@@ -6,7 +6,7 @@ public class DrillMolar : MonoBehaviour
 {
     public float bobScale = 2;
     public float xPosition;
-    float phase = 0;
+    public float phase = 0;
 	float waggleTime;
 
     [Header("Ricochet")]
@@ -37,6 +37,7 @@ public class DrillMolar : MonoBehaviour
 		if (phase == 0) {
 			rb.MovePosition(rb.position + (Vector2.left * drillMoveSpeed * Time.fixedDeltaTime));
 			if (rb.position.x <= xPosition) {
+				Debug.Log(rb.position.x + ", " + xPosition);
 				rb.position = new Vector2(xPosition, rb.position.y);
 				phase = 1;
 			}

@@ -30,8 +30,8 @@ public class TrainController : MonoBehaviour
     }
 
     void fireCoins(){
-        for(var i = -10; i < 10; i++){
-            Instantiate(coin, new Vector2(3, -2), Quaternion.Euler(0, 0, (Vector2.SignedAngle(new Vector2(1, 0), (Vector2)player.transform.position - new Vector2(3, -2))+i*4.5f)));
+        for(var i = -7; i <= 7; i++){
+            Instantiate(coin, new Vector2(3, -2), Quaternion.Euler(0, 0, (Vector2.SignedAngle(new Vector2(1, 0), (Vector2)player.transform.position - new Vector2(3, -2))+i*6f)));
         }
     }
     

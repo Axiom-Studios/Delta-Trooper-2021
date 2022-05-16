@@ -49,6 +49,7 @@ public class SpawnController : MonoBehaviour
             ("SpawnBCell", 65f, 90f, 10f),
             ("SpawnAntibody", 75f, 90f, 0.5f),
             ("SpawnMacrophage", 75f, 90f, -1f),
+            ("DespawnMacrophages", 90f, 90f, -1f),
             ("SpawnDrillMolar", 90f, -1f, -1f),
             ("AdvanceDrillMolarPhase", 105f, -1f, -1f)
         },
@@ -57,12 +58,13 @@ public class SpawnController : MonoBehaviour
             ("SpawnMacrophage", 20f, 11f, -1f),
             ("SpawnBCell", 40f, 60f, 4f),
             ("SpawnBCell", 60f, 90f, 3f),
-            ("SpawnTrain", 90f, 90f, -1f),
+            ("DespawnMacrophages", 90f, 90f, -1f),
+            ("SpawnTrain", 90f, 90f, -1f)
         },
         new List<(string, float, float, float)>{
             ("SpawnWall", 1f, 60f, 5f),
             //("SpawnMacrophage", 10f, 11f, -1f),
-			("SpawnAntibody", 20f, 60f, 1f),
+			("SpawnAntibody", 20f, 60f, 0.5f),
 			("SpawnBCell", 30f, 60f, 3f),
             ("SpawnTBone", 60f, -1f, -1f),
             ("SpawnAntibody", 80f, -1f, 1f),
@@ -99,17 +101,6 @@ public class SpawnController : MonoBehaviour
         startTime = Time.time;
         spawning = spawnList[level];
         Debug.Log("Got Spawning for level " + level);
-        /*
-        foreach(var i in spawnList[level]){
-            if (i.Item4 == -1)
-            {
-                Invoke(i.Item1, i.Item2);
-            }
-            else
-            {
-                InvokeRepeating(i.Item1, i.Item2, i.Item4);
-            }
-        }*/
         Invoke("ChangeLevel", levelLengths[level]);
     }
 
@@ -197,6 +188,7 @@ public class SpawnController : MonoBehaviour
                 DialogueSystem.menuPaused = true;
                 timeSinceTransition = Time.unscaledTime;
                 PlayerMovement.lives = 5;
+                PlayerMovement.health = 100;
                 BG.GetComponent<BackgroundController>().ChangeBG(level);
                 LoadLevel();
             }
@@ -225,7 +217,7 @@ public class SpawnController : MonoBehaviour
     }
     //BOSS FUNCTIONS
     public void SpawnDrillMolar() {
-        currentBoss = Instantiate(drillMolar);
+        currentBoss = Instantiate(drillMolar, new Vector2(20, 0), transform.rotation);
     }
 	public void AdvanceDrillPhase() {
 		currentBoss.GetComponent<DrillMolar>().AdvancePhase();
