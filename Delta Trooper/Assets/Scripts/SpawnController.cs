@@ -51,7 +51,7 @@ public class SpawnController : MonoBehaviour
             ("SpawnMacrophage", 75f, 90f, -1f),
             ("DespawnMacrophages", 90f, 90f, -1f),
             ("SpawnDrillMolar", 90f, -1f, -1f),
-            ("AdvanceDrillMolarPhase", 105f, -1f, -1f)
+            ("AdvanceDrillMolarPhase", 100f, -1f, -1f)
         },
         new List<(string, float, float, float)>{
             ("SpawnBCell", 1f, 40f, 5f),
@@ -88,7 +88,6 @@ public class SpawnController : MonoBehaviour
 
     void LoadLevel()
     {
-        Debug.Log("Loading Level: " + level);
         foreach(var i in FindObjectsOfType<GameObject>()){
             if (i.layer == 3){
                 Destroy(i);
@@ -100,7 +99,6 @@ public class SpawnController : MonoBehaviour
         player.transform.position = new Vector2 (0, 0);
         startTime = Time.time;
         spawning = spawnList[level];
-        Debug.Log("Got Spawning for level " + level);
         Invoke("ChangeLevel", levelLengths[level]);
     }
 
@@ -130,14 +128,12 @@ public class SpawnController : MonoBehaviour
             transitionScreen.SetActive(false);
             timeSinceTransition = 0;
             DialogueSystem.menuPaused = false;
-            Debug.Log("haaaaaaaaaaaa");
 
         }
     }
 
     void SpawnWall() {
         Instantiate(wallPrefab, transform.position + (Vector3.right * 18), transform.rotation);
-        Debug.Log("beep boop I am a wall");
 		if (!DialogueSystem.wallExplained) {
 			Invoke("WallDialogue", 1);
 		}
@@ -210,7 +206,6 @@ public class SpawnController : MonoBehaviour
     }
 
     public void Win(){
-        Debug.Log("You won congrats ig");
         winScreen.SetActive(true);
         winText.text = "You Infected " + names[Mathf.RoundToInt(Random.Range(0,names.Length))] + "! \n\nCongratulations!";
         Time.timeScale = 0;

@@ -6806,7 +6806,7 @@ MonoBehaviour:
   winText: {fileID: 0}
   levelProgressBar: {fileID: 799777449}
   displayLevel: 0
-  levelLengths: 780000007800000078000000
+  levelLengths: 820000007800000078000000
   startTime: 0
 --- !u!4 &1116672586
 Transform:

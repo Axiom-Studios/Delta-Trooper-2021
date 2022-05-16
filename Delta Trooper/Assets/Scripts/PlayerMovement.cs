@@ -186,7 +186,6 @@ public class PlayerMovement : MonoBehaviour
     }
     
     public void Dash() {
-        //Debug.Log(dashEnd);
         if (!dashing && controls.Player.Dash.triggered && Time.time - dashCooldown >= dashEnd) { // START DASH
             audioSource.PlayOneShot(dashSound);
             dashing = true;
@@ -310,13 +309,11 @@ public class PlayerMovement : MonoBehaviour
 	void OnCollisionStay2D() {
 		if (transform.position.x - clampCamera.ScreenToWorldPoint(Vector3.zero).x <= wallKillError) {
 			Kill();
-			Debug.Log("RIP");
 		}
 	}
 
     public void Kill()
     {
-        Debug.Log("You died");
         lives--;
         if (lives == 0)
         {
@@ -377,7 +374,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Win()
     {
-        Debug.Log("You won");
         spriteRenderer.color = Color.magenta;
         cellTime = 0;
     }
