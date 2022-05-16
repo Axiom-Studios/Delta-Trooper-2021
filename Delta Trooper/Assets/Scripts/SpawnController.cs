@@ -51,7 +51,7 @@ public class SpawnController : MonoBehaviour
             ("SpawnMacrophage", 75f, 90f, -1f),
             ("DespawnMacrophages", 90f, 90f, -1f),
             ("SpawnDrillMolar", 90f, -1f, -1f),
-            ("AdvanceDrillMolarPhase", 100f, -1f, -1f)
+            ("AdvanceDrillPhase", 100f, -1f, -1f)
         },
         new List<(string, float, float, float)>{
             ("SpawnBCell", 1f, 40f, 5f),

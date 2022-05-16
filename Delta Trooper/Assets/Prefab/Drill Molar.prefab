@@ -99,8 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobScale: 2
   xPosition: 8
+  phase: 0
   ricochetDrill: {fileID: 1182393058769513683, guid: 95f6313177f41a64ebf2f4d6ab1da0a0, type: 3}
-  rate: 2
+  rate: 4
   rubble: {fileID: 3430851186326982822, guid: 96f5c0c8b24af2a488e1f396d0f36429, type: 3}
   rubbleAmount: 10
   loopRate: 3
